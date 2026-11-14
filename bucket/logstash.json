@@ -1,7 +1,7 @@
 {
-    "version": "6.8.20",
+    "version": "8.19.25",
     "description": "A data processing pipeline that ingests data from a multitude of sources simultaneously, transforms it, and then sends it to your favorite \"stash\".",
-    "homepage": "https://www.elastic.co/products/logstash",
+    "homepage": "https://www.elastic.co/logstash",
     "license": {
         "identifier": "Freeware|Apache-2.0",
         "url": "https://github.com/elastic/logstash/blob/master/LICENSE.txt"
@@ -12,9 +12,13 @@
             "java/openjdk"
         ]
     },
-    "url": "https://artifacts.elastic.co/downloads/logstash/logstash-6.8.20.zip",
-    "hash": "sha512:2eaac3a658a5e864ca335a8399ca84f63781af26ad4890b4b10612ff1145278f0e4a6d4877ecfb82653ddf0c5936a34b5cfb5f4e9b97eef12f17ca006ee277c8",
-    "extract_dir": "logstash-6.8.20",
+    "architecture": {
+        "64bit": {
+            "url": "https://artifacts.elastic.co/downloads/logstash/logstash-8.19.25-windows-x86_64.zip",
+            "hash": "sha512:4727278953838ecc9ac2e40a49cc9496baa9a407c6805126543cba749b2fcb3741c83b6393f9f916e11011f00940e28fdac5111a6d115433ee091ab29db160b8"
+        }
+    },
+    "extract_dir": "logstash-8.19.25",
     "bin": [
         [
             "bin\\logstash.bat",
@@ -31,10 +35,14 @@
     ],
     "checkver": {
         "url": "https://www.elastic.co/downloads/logstash",
-        "regex": "logstash-([\\d.]+)\\.zip"
+        "regex": "logstash-([\\d.]+)-windows-x86_64\\.zip"
     },
     "autoupdate": {
-        "url": "https://artifacts.elastic.co/downloads/logstash/logstash-$version.zip",
+        "architecture": {
+            "64bit": {
+                "url": "https://artifacts.elastic.co/downloads/logstash/logstash-$version-windows-x86_64.zip"
+            }
+        },
         "hash": {
             "url": "$url.sha512"
         },

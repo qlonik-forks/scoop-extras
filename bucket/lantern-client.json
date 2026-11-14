@@ -1,23 +1,32 @@
 {
-    "##": "Removing checkver/autoupdate since the installer cannot be properly extracted after version 5.5.6.",
-    "version": "5.5.6",
+    "version": "7.9.7",
     "description": "HTTP/HTTPS proxy",
-    "homepage": "https://getlantern.org",
+    "homepage": "https://lantern.io/",
     "license": "Apache-2.0",
-    "url": "https://raw.githubusercontent.com/getlantern/lantern-binaries/master/lantern-installer-5.5.6.exe#/dl.7z",
-    "hash": "edd9ccba5ad0cf0262baade11bf3b0c300a96f1638553d46baaae4de7d208cfb",
-    "pre_install": [
-        "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\uninstall.exe.nsis\" -Recurse",
-        "if (!(Test-Path \"$persist_dir\\settings.yaml\")) { New-Item \"$dir\\settings.yaml\" | Out-Null }"
-    ],
+    "architecture": {
+        "64bit": {
+            "url": "https://media.githubusercontent.com/media/getlantern/lantern-binaries/main/lantern-installer-64-bit.exe#/dl.7z",
+            "hash": "69480dbc2b3aab13e4ad4bc9989a39e14f0d90275206cdf9401b150ce3c85405"
+        }
+    },
+    "pre_install": "Remove-Item \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
     "bin": "lantern.exe",
     "shortcuts": [
         [
             "lantern.exe",
-            "Lantern",
-            "",
-            "lantern.ico"
+            "Lantern"
         ]
     ],
-    "persist": "settings.yaml"
+    "persist": "lantern.yaml",
+    "checkver": {
+        "url": "https://github.com/getlantern/lantern-binaries/commits/main/lantern-installer-64-bit.exe",
+        "regex": "Lantern binaries for version ([\\d.]+)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://media.githubusercontent.com/media/getlantern/lantern-binaries/main/lantern-installer-64-bit.exe#/dl.7z"
+            }
+        }
+    }
 }

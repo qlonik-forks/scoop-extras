@@ -1,41 +1,38 @@
 {
-    "version": "1.6.8",
+    "version": "1.7.5",
     "description": "Quick, simple but powerful image editor (Community Edition)",
     "homepage": "https://photoflare.io",
     "license": "GPL-3.0-or-later",
+    "suggest": {
+        "vcredist": "extras/vcredist2022"
+    },
     "architecture": {
         "64bit": {
-            "url": "https://launchpad.net/photofiltre-lx/trunk/v1.6.8/%2Bdownload/Photoflare_CE_1.6.8_amd64_win_portable.zip",
-            "hash": "md5:d8154ef4ffa4b543cdd51e14f7a57fb6",
-            "extract_dir": "Photoflare_CE_1.6.8_amd64_win_portable"
+            "url": "https://github.com/PhotoFlare/photoflare/releases/download/v1.7.5/photoflare_1.7.5_amd64_win_portable.zip",
+            "hash": "bd58c3e0d11645122d8cb1b1241251dc32198968158b204bf53816623787a521"
         }
     },
+    "pre_install": "Remove-Item \"$dir\\vc_redist.*.exe\" -Force -Recurse",
     "bin": [
-        "ce_photoflare.exe",
         [
-            "ce_photoflare.exe",
+            "photoflare.exe",
             "photoflare"
         ]
     ],
     "shortcuts": [
         [
-            "ce_photoflare.exe",
+            "photoflare.exe",
             "PhotoFlare"
         ]
     ],
     "checkver": {
-        "url": "https://photoflare.io/changelog/",
-        "regex": ">v([\\d.]+)\\s+&#8211;\\s+\\d{2}"
+        "github": "https://github.com/PhotoFlare/photoflare"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://launchpad.net/photofiltre-lx/trunk/v$version/%2Bdownload/Photoflare_CE_$matchHead_amd64_win_portable.zip",
-                "extract_dir": "Photoflare_CE_$matchHead_amd64_win_portable"
+                "url": "https://github.com/PhotoFlare/photoflare/releases/download/v$version/photoflare_$version_amd64_win_portable.zip"
             }
-        },
-        "hash": {
-            "url": "$url/%2Bmd5"
         }
     }
 }

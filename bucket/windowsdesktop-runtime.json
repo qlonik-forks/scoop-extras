@@ -1,20 +1,21 @@
 {
-    "version": "5.0.12",
-    "description": "Microsoft .NET 5.0 Desktop Runtime",
+    "version": "10.0.14",
+    "description": "Microsoft .NET (10.0 latest) Desktop Runtime",
     "homepage": "https://dotnet.microsoft.com/download/dotnet",
-    "license": {
-        "identifier": "Freeware",
-        "url": "https://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default.aspx"
-    },
-    "notes": "You can now remove this installer with 'scoop uninstall windowsdesktop-runtime'",
+    "license": "MIT",
+    "notes": "You can now remove this installer with 'scoop uninstall -p windowsdesktop-runtime'",
     "architecture": {
         "64bit": {
-            "url": "https://dotnetcli.blob.core.windows.net/dotnet/WindowsDesktop/5.0.12/windowsdesktop-runtime-5.0.12-win-x64.exe",
-            "hash": "620ff1ecbc2318496d17843cbb90cd682c6435ff40e601c22d16bc80e8f04549"
+            "url": "https://dotnetcli.blob.core.windows.net/dotnet/WindowsDesktop/10.0.14/windowsdesktop-runtime-10.0.14-win-x64.exe",
+            "hash": "sha512:337dacab1636219147b3fe75e451bf5b1c17bca2c86328266d40c4ad1ff0a1e8391c4746ca7a5b702b65b61e8bfe834566cfc1b548cc10aef90b441357b10b69"
         },
         "32bit": {
-            "url": "https://dotnetcli.blob.core.windows.net/dotnet/WindowsDesktop/5.0.12/windowsdesktop-runtime-5.0.12-win-x86.exe",
-            "hash": "e3e2e4eda5a5118f9ca71759b5893932ee1fb7bdc9964514c57045fd68ca2911"
+            "url": "https://dotnetcli.blob.core.windows.net/dotnet/WindowsDesktop/10.0.14/windowsdesktop-runtime-10.0.14-win-x86.exe",
+            "hash": "sha512:630c9a4a903349e51a887c28469f3866493054190f806d0aff4528de26435c69f0c98e2c6a1fea04752523b35e9320b1f0ce2fc379a9a3e54fd4a206f2740d32"
+        },
+        "arm64": {
+            "url": "https://dotnetcli.blob.core.windows.net/dotnet/WindowsDesktop/10.0.14/windowsdesktop-runtime-10.0.14-win-arm64.exe",
+            "hash": "sha512:3ea03fbaf7281affa959db52299d2dd198879a10d7db1b58ae09246399f421fa51ed7fb45eca4d4742b98f7d34c0a2d9d412cb6707474a2743b32405ce10a965"
         }
     },
     "pre_install": "if (!(is_admin)) { throw 'Admin privileges are required.' }",
@@ -22,8 +23,9 @@
         "script": "Invoke-ExternalCommand \"$dir\\$fname\" -ArgumentList '/install', '/quiet', '/norestart' -RunAs | Out-Null"
     },
     "checkver": {
-        "url": "https://dotnetcli.blob.core.windows.net/dotnet/WindowsDesktop/Current/latest.version",
-        "regex": "([\\d.]+)$"
+        "url": "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/releases-index.json",
+        "jsonpath": "$.releases-index[?(@.support-phase == 'active')].latest-runtime",
+        "regex": "([\\d.]+)"
     },
     "autoupdate": {
         "architecture": {
@@ -32,7 +34,13 @@
             },
             "32bit": {
                 "url": "https://dotnetcli.blob.core.windows.net/dotnet/WindowsDesktop/$version/windowsdesktop-runtime-$version-win-x86.exe"
+            },
+            "arm64": {
+                "url": "https://dotnetcli.blob.core.windows.net/dotnet/WindowsDesktop/$version/windowsdesktop-runtime-$version-win-arm64.exe"
             }
+        },
+        "hash": {
+            "url": "https://dotnetcli.blob.core.windows.net/dotnet/checksums/$version-sha.txt"
         }
     }
 }

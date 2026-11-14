@@ -1,12 +1,12 @@
 {
-    "version": "1.52.0",
+    "version": "2.6.0",
     "description": "Personal knowledge manager",
     "homepage": "https://mindforger.com",
     "license": "GPL-2.0-or-later",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/dvorka/mindforger/releases/download/1.52.0/mindforger-windows-installer-1.52.0.exe",
-            "hash": "be3c17e36f5cdc6b49eeb438b12b6c5ec4e30fd1d760458d679b4787d3355b90"
+            "url": "https://github.com/dvorka/mindforger/releases/download/2.6.0/windows-installer-mindforger-2.6.0.exe",
+            "hash": "6f63e1d57f5bb946417c1a65191cbabfa1f77a95420ce258b768fc17dd9ed96b"
         }
     },
     "innosetup": true,
@@ -23,7 +23,7 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/dvorka/mindforger/releases/download/$version/mindforger-windows-installer-$version.exe"
+                "url": "https://github.com/dvorka/mindforger/releases/download/$version/windows-installer-mindforger-$version.exe"
             }
         }
     }

@@ -1,18 +1,35 @@
 {
-    "version": "2063",
+    "version": "2136",
     "description": "A Git client with snappy UI, three-way merge tool, side-by-side diffs, syntax highlighting, and more.",
     "homepage": "https://www.sublimemerge.com/",
     "license": {
         "identifier": "Shareware",
         "url": "https://www.sublimehq.com/eula"
     },
-    "notes": "Sublime Merge may be downloaded and evaluated for free, however a license must be purchased for continued use. There is currently no enforced time limit for the evaluation. For more information please see https://www.sublimemerge.com/",
+    "notes": [
+        "Sublime Merge may be downloaded and evaluated for free, however a license must be purchased for continued use. There is currently no enforced time limit for the evaluation. For more information please see https://www.sublimemerge.com/",
+        "Add Sublime Merge as a context menu option by running:",
+        "reg import \"$dir\\install-context.reg\""
+    ],
     "architecture": {
         "64bit": {
-            "url": "https://download.sublimetext.com/sublime_merge_build_2063_x64.zip",
-            "hash": "9bb04d732a31dc3183b15e261e7251d1c6e578e4b672c40d0aedbec51f7128fe"
+            "url": "https://download.sublimetext.com/sublime_merge_build_2136_x64.zip",
+            "hash": "88ec0176c5b07f20b683cb9e412aa40ee9ae43867251a4fe9f65a4dffc03a55b"
         }
     },
+    "post_install": [
+        "$exepath = \"$dir\\sublime_merge.exe\".Replace('\\', '\\\\')",
+        "'install-context.reg', 'uninstall-context.reg' | ForEach-Object {",
+        "    if (Test-Path \"$bucketsdir\\extras\\scripts\\$app\\$_\") {",
+        "        $content = Get-Content \"$bucketsdir\\extras\\scripts\\$app\\$_\"",
+        "        $content = $content.Replace('$sublime-merge-path', $exepath)",
+        "        if ($global) {",
+        "            $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
+        "        }",
+        "    }",
+        "    $content | Set-Content -Path \"$dir\\$_\" -Encoding ascii",
+        "}"
+    ],
     "bin": "smerge.exe",
     "shortcuts": [
         [
@@ -21,9 +38,12 @@
         ]
     ],
     "persist": "Data",
+    "uninstaller": {
+        "script": "if ($cmd -eq 'uninstall') { reg import \"$dir\\uninstall-context.reg\" }"
+    },
     "checkver": {
-        "url": "https://www.sublimemerge.com/download",
-        "regex": "Version:</i>\\sBuild\\s([\\d]+)</p>"
+        "url": "https://www.sublimemerge.com/updates/stable_update_check",
+        "jsonpath": "$.latest_version"
     },
     "autoupdate": {
         "architecture": {

@@ -1,18 +1,15 @@
 {
-    "version": "8.4.1-1",
+    "version": "10.0.2-1",
     "description": "Comprehensive free Prolog environment.",
     "homepage": "https://www.swi-prolog.org/",
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": "https://www.swi-prolog.org/download/stable/bin/swipl-8.4.1-1.x64.exe#/dl.7z",
-            "hash": "212271267caf0b914534519d4a553feb8e4608979d635cfaba63c125461084e5"
-        },
-        "32bit": {
-            "url": "https://www.swi-prolog.org/download/stable/bin/swipl-8.4.1-1.x86.exe#/dl.7z",
-            "hash": "17355cd21f82d3778db53d772ab9c6c2f4df065653bbab36105ba3d4321811f9"
+            "url": "https://www.swi-prolog.org/download/stable/bin/swipl-10.0.2-1.x64.exe#/dl.7z",
+            "hash": "2ec1f25be0eafb92e559004782b130774c12573fb4b7e8a917e534754a641ad6"
         }
     },
+    "post_install": "Remove-Item \"$dir\\`$PLUGINSDIR\" -Force -Recurse",
     "bin": [
         "bin\\swipl.exe",
         "bin\\swipl-ld.exe"
@@ -31,9 +28,6 @@
         "architecture": {
             "64bit": {
                 "url": "https://www.swi-prolog.org/download/stable/bin/swipl-$version.x64.exe#/dl.7z"
-            },
-            "32bit": {
-                "url": "https://www.swi-prolog.org/download/stable/bin/swipl-$version.x86.exe#/dl.7z"
             }
         },
         "hash": {

@@ -1,10 +1,21 @@
 {
-    "version": "7.1.0.6543",
-    "description": ".NET assembly browser and decompiler",
+    "version": "11.2.0.10050",
+    "description": ".NET assembly browser and decompiler.",
     "homepage": "http://ilspy.net",
     "license": "MIT",
-    "url": "https://github.com/icsharpcode/ILSpy/releases/download/v7.1/ILSpy_binaries_7.1.0.6543.zip",
-    "hash": "ad61ec674510893c77f4795d27c1733493856230d03574e9490891676e397d0f",
+    "suggest": {
+        ".NET Desktop Runtime 10.0": "versions/windowsdesktop-runtime-10.0"
+    },
+    "architecture": {
+        "arm64": {
+            "url": "https://github.com/icsharpcode/ILSpy/releases/download/v11.2/ILSpy_windows_11.2.0.10050-arm64.zip",
+            "hash": "b668e18e47bbe5319c5a78c5aa606b1d57f317440cee556ecbb95f8f14f35b2e"
+        },
+        "64bit": {
+            "url": "https://github.com/icsharpcode/ILSpy/releases/download/v11.2/ILSpy_windows_11.2.0.10050-x64.zip",
+            "hash": "828cf2796e35ffb2f3b56e9736a4c8a711520dde3f781a7bf47cb460c17db980"
+        }
+    },
     "bin": "ILSpy.exe",
     "shortcuts": [
         [
@@ -13,10 +24,18 @@
         ]
     ],
     "checkver": {
-        "github": "https://github.com/icsharpcode/ILSpy",
-        "regex": "v[\\d.]+/ILSpy_binaries_([\\d.]+)\\.zip"
+        "github": "https://api.github.com/repos/icsharpcode/ILSpy/releases",
+        "jsonpath": "$..assets[?(@.browser_download_url =~ /ILSpy_windows_(?:[\\d.]+)-x64\\.zip$/i)].browser_download_url",
+        "regex": "download/v(?<tag>[\\d.]+)/ILSpy_windows_([\\d.]+)-x64\\.zip"
     },
     "autoupdate": {
-        "url": "https://github.com/icsharpcode/ILSpy/releases/download/v$majorVersion.$minorVersion/ILSpy_binaries_$version.zip"
+        "architecture": {
+            "arm64": {
+                "url": "https://github.com/icsharpcode/ILSpy/releases/download/v$matchTag/ILSpy_windows_$version-arm64.zip"
+            },
+            "64bit": {
+                "url": "https://github.com/icsharpcode/ILSpy/releases/download/v$matchTag/ILSpy_windows_$version-x64.zip"
+            }
+        }
     }
 }

@@ -1,16 +1,20 @@
 {
-    "version": "0.25.0",
+    "version": "0.34.0",
     "description": "Connects to mattermost or slack using IRC-client.",
     "homepage": "https://github.com/42wim/matterircd",
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/42wim/matterircd/releases/download/v0.25.0/matterircd-0.25.0-windows-64bit.exe#/matterircd.exe",
-            "hash": "19eea8c55888b01f062a5f6163b016656ff11d6262b02018f06d4e3a95e4abd2"
+            "url": "https://github.com/42wim/matterircd/releases/download/v0.34.0/matterircd-0.34.0-windows-amd64.exe#/matterircd.exe",
+            "hash": "1d2bbb65a7e78ddeca895b32e63108ad8ef7b6dc4d1a149815eca155118cc758"
         },
         "32bit": {
-            "url": "https://github.com/42wim/matterircd/releases/download/v0.25.0/matterircd-0.25.0-windows-32bit.exe#/matterircd.exe",
-            "hash": "18ebd827951900b03720926cdedf0e74933984407fa4368b0adefecf5b43e7d0"
+            "url": "https://github.com/42wim/matterircd/releases/download/v0.34.0/matterircd-0.34.0-windows-386.exe#/matterircd.exe",
+            "hash": "81b641fc79b60ab0cf99c326b31193ce3d94f5c7e375db16cd090bea0ea77f9e"
+        },
+        "arm64": {
+            "url": "https://github.com/42wim/matterircd/releases/download/v0.34.0/matterircd-0.34.0-windows-arm64.exe#/matterircd.exe",
+            "hash": "cb5552f4071cc3379649f91f53c4a8ca1c354efa6b8f9e1c8692d7167856a831"
         }
     },
     "bin": "matterircd.exe",
@@ -18,10 +22,13 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/42wim/matterircd/releases/download/v$version/matterircd-$version-windows-64bit.exe#/matterircd.exe"
+                "url": "https://github.com/42wim/matterircd/releases/download/v$version/matterircd-$version-windows-amd64.exe#/matterircd.exe"
             },
             "32bit": {
-                "url": "https://github.com/42wim/matterircd/releases/download/v$version/matterircd-$version-windows-32bit.exe#/matterircd.exe"
+                "url": "https://github.com/42wim/matterircd/releases/download/v$version/matterircd-$version-windows-386.exe#/matterircd.exe"
+            },
+            "arm64": {
+                "url": "https://github.com/42wim/matterircd/releases/download/v$version/matterircd-$version-windows-arm64.exe#/matterircd.exe"
             }
         },
         "hash": {

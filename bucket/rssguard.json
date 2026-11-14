@@ -1,15 +1,22 @@
 {
-    "version": "4.0.4",
-    "description": "A simple, light and easy-to-use RSS/ATOM feed aggregator",
+    "version": "5.3.0",
+    "description": "A simple, light and easy-to-use RSS/ATOM feed aggregator (WebEngine-based viewer variant).",
     "homepage": "https://github.com/martinrotter/rssguard",
     "license": "GPL-3.0-only",
+    "notes": [
+        "As of version 5.1.0, RSSGuard offers a text-based viewer variant and a WebEngine-based variant.",
+        "This package provides the WebEngine-based viewer variant.",
+        "For more information, please refer to:",
+        "- https://github.com/martinrotter/rssguard/releases/tag/5.1.0",
+        "- https://rssguard.readthedocs.io/en/latest/features/article-display.html"
+    ],
     "suggest": {
-        "vcredist": "vcredist2019"
+        "vcredist": "extras/vcredist2022"
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/martinrotter/rssguard/releases/download/4.0.4/rssguard-4.0.4-9855b8a5-win64.7z",
-            "hash": "f7afa18858a40d39a223258ccd4b4b70b85dced31b5723306b0ce9a6a30a650d"
+            "url": "https://github.com/martinrotter/rssguard/releases/download/5.3.0/rssguard-5.3.0-web-qt6-win10.7z",
+            "hash": "77196217e023e0f6eea08d8b1a44fb91101eccb283e840ace9ba5f248146d67d"
         }
     },
     "pre_install": "Remove-Item \"$dir\\vc_redis*\"",
@@ -19,15 +26,16 @@
             "RSS Guard"
         ]
     ],
-    "persist": "data",
+    "persist": "data5",
     "checkver": {
-        "github": "https://github.com/martinrotter/rssguard",
-        "regex": "rssguard-([\\d.]+)-(?<commit>\\w+)-win64\\.7z"
+        "github": "https://api.github.com/repos/martinrotter/rssguard/releases",
+        "jsonpath": "$[*].assets[*].name",
+        "regex": "rssguard-(?<version>([\\d.]+))-web-(?<qt>qt\\d+)-win10\\.7z"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/martinrotter/rssguard/releases/download/$version/rssguard-$version-$matchCommit-win64.7z"
+                "url": "https://github.com/martinrotter/rssguard/releases/download/$version/rssguard-$version-web-$matchQt-win10.7z"
             }
         }
     }

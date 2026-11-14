@@ -1,10 +1,10 @@
 {
-    "version": "5.5.3",
+    "version": "5.10.4",
     "description": "Personal accounting",
-    "homepage": "http://homebank.free.fr",
+    "homepage": "https://www.gethomebank.org",
     "license": "GPL-2.0-or-later",
-    "url": "http://homebank.free.fr/public/HomeBank-5.5.3-setup.exe",
-    "hash": "ba88e3798f705531466ac67a89be9b85a02209c442c963df8e9f837ea2aa71f7",
+    "url": "https://www.gethomebank.org/public/binaries/HomeBank-5.10.4-setup.exe",
+    "hash": "affd27354840aeca6d728434b53c6819a8a15230c9eec89d2cdeddb9c60982e6",
     "innosetup": true,
     "installer": {
         "script": [
@@ -20,14 +20,14 @@
     ],
     "persist": "config",
     "checkver": {
-        "url": "http://homebank.free.fr/en/downloads.php",
-        "regex": "HomeBank-([\\d.]+)-setup\\.exe"
+        "url": "https://www.gethomebank.org/en/downloads.php",
+        "regex": "Latest version.*?([\\d.]+)"
     },
     "autoupdate": {
-        "url": "http://homebank.free.fr/public/HomeBank-$version-setup.exe",
+        "url": "https://www.gethomebank.org/public/binaries/HomeBank-$version-setup.exe",
         "hash": {
-            "url": "http://homebank.free.fr/en/downloads.php",
-            "regex": "(?sm)$basename.*?SHA256:\\s+$sha256"
+            "url": "https://www.gethomebank.org/en/downloads.php",
+            "regex": "(?sm)$basename.*?SHA256:\\s<code>$sha256"
         }
     }
 }

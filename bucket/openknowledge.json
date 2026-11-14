@@ -1,0 +1,48 @@
+{
+    "version": "0.89.6",
+    "description": "Beautiful, AI-native markdown IDE and LLM wiki",
+    "homepage": "https://openknowledge.ai",
+    "license": "GPL-3.0-or-later",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/inkeep/open-knowledge/releases/download/v0.89.6/OpenKnowledge-Setup-x64.exe#/dl.7z",
+            "hash": "sha512:107152693ceb9ef3ddda4489028aa6ae26c9a8dc6f878ea0304b5ac3526b55ed473b18845f9e208c57355bb82ba22690256724404a58aaf2afbb919ea966a52a",
+            "pre_install": [
+                "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.zip\" \"$dir\"",
+                "Remove-Item \"$dir\\`$*\", \"$dir\\*.nsi\", \"$dir\\Uninst*\" -Recurse"
+            ]
+        },
+        "arm64": {
+            "url": "https://github.com/inkeep/open-knowledge/releases/download/v0.89.6/OpenKnowledge-Setup-arm64.exe#/dl.7z",
+            "hash": "sha512:9595cad34a95e01a601fd3d061ccbea87ec5a0c9ff2de086dae0581336a0ecaa9496ffc9ce4e4462e48247d1a038755915ac47e4b5e20b67c0aba0d5aae123b3",
+            "pre_install": [
+                "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-arm64.zip\" \"$dir\"",
+                "Remove-Item \"$dir\\`$*\", \"$dir\\*.nsi\", \"$dir\\Uninst*\" -Recurse"
+            ]
+        }
+    },
+    "bin": "resources\\cli\\bin\\ok.cmd",
+    "shortcuts": [
+        [
+            "OpenKnowledge.exe",
+            "OpenKnowledge"
+        ]
+    ],
+    "checkver": {
+        "github": "https://github.com/inkeep/open-knowledge"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/inkeep/open-knowledge/releases/download/v$version/OpenKnowledge-Setup-x64.exe#/dl.7z"
+            },
+            "arm64": {
+                "url": "https://github.com/inkeep/open-knowledge/releases/download/v$version/OpenKnowledge-Setup-arm64.exe#/dl.7z"
+            }
+        },
+        "hash": {
+            "url": "$baseurl/latest.yml",
+            "regex": "(?s)$basename.*?$base64"
+        }
+    }
+}

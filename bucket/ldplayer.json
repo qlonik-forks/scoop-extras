@@ -1,11 +1,26 @@
 {
-    "version": "4.0.71.1",
+    "version": "14.0.36.0",
     "description": "An Android emulator optimized for mobile gaming with lower resource consumption",
     "homepage": "https://www.ldplayer.net",
-    "license": "Unknown",
-    "notes": "Administrator privileges are required to run repairer",
-    "url": "https://encdn.ldmnq.com/download/package/LDPlayer_4.0.71.exe#/dl.7z",
-    "hash": "54c4d0660763e200bfd726a1df728b86b067f882dec056c5c55253b81687d174",
+    "license": {
+        "identifier": "Proprietary",
+        "url": "https://www.ldplayer.net/other/terms-of-use.html"
+    },
+    "notes": [
+        "Administrator privileges are required to run repairer.",
+        "For LDPlayer 5, use `versions/ldplayer5`; for LDPlayer 9, use `versions/ldplayer9`."
+    ],
+    "url": "https://static.ldrescdn.com/download/package/LDPlayer_14.0.36.0.exe",
+    "hash": "24540733411398b37f3216c190cf946de94a4641aaf678da75db5d8097c7ab82",
+    "installer": {
+        "script": [
+            "Expand-7zipArchive \"$dir\\$fname\" \"$dir\\installer\" -Switches \"-t#\" -Removal",
+            "Get-ChildItem -LiteralPath \"$dir\\installer\" -Filter '*.7z' -File | ForEach-Object {",
+            "    Expand-7zipArchive $_.FullName $dir",
+            "}",
+            "Remove-Item \"$dir\\installer\" -Force -Recurse"
+        ]
+    },
     "shortcuts": [
         [
             "dnplayer.exe",
@@ -29,9 +44,9 @@
     ],
     "checkver": {
         "url": "https://www.ldplayer.net/other/version-history-and-release-notes.html",
-        "regex": "version:\"(4[\\d.]+)\""
+        "regex": "download/package/LDPlayer_([\\d.]+)\\.exe"
     },
     "autoupdate": {
-        "url": "https://encdn.ldmnq.com/download/package/LDPlayer_$matchHead.exe#/dl.7z"
+        "url": "https://static.ldrescdn.com/download/package/LDPlayer_$version.exe"
     }
 }

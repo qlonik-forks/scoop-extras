@@ -1,5 +1,6 @@
 {
-    "version": "1.33.0.0",
+    "##": "The installer is made with InnoSetup, but encrypted with a password.",
+    "version": "1.65.0.0",
     "description": "Tweaks and hidden settings for power-users for Windows 7/8/8.1/10/11",
     "homepage": "https://winaerotweaker.com/",
     "license": {
@@ -7,18 +8,15 @@
         "url": "https://winaero.com/comment.php?comment.news.1836"
     },
     "url": "https://winaerotweaker.com/download/winaerotweaker.zip",
-    "hash": "aff82ae47d93da0ca329d560a2b76fdbc47077b5dca5b1bc840979afba5ee270",
+    "hash": "9a57d26bb9aba3ed035d64d731aa0397a043d86b5db052292319ff715b54837f",
     "pre_install": [
         "Remove-Item \"$dir\\SilentSetup.cmd\" -ErrorAction 'SilentlyContinue'",
         "Get-ChildItem \"$dir\" '*setup.exe' | Rename-Item -NewName 'setup.exe'"
     ],
     "installer": {
-        "file": "setup.exe",
-        "args": [
-            "/SP-",
-            "/VERYSILENT",
-            "/PORTABLE",
-            "/DIR=\"$dir\""
+        "script": [
+            "Start-Process -Wait \"$dir\\setup.exe\" -ArgumentList @('/SP-', '/VERYSILENT', '/PORTABLE', \"/DIR=`\"$dir`\"\")",
+            "Remove-Item \"$dir\\setup.exe\""
         ]
     },
     "bin": "WinaeroTweaker.exe",

@@ -1,20 +1,26 @@
 {
-    "version": "1.0.4",
-    "description": "A truly minimal markdown editor",
+    "version": "1.14.15",
+    "description": "A minimal Markdown editor and reader",
     "homepage": "https://typora.io",
     "license": {
         "identifier": "Proprietary",
         "url": "https://support.typora.io/License-Agreement/"
     },
-    "notes": "This package has a 15-day free trial",
+    "notes": [
+        "The Typora ARM64 version is in a separate manifest: `typora-arm64`. To install it, run:",
+        "scoop install typora-arm64"
+    ],
+    "suggest": {
+        "pandoc": "pandoc"
+    },
     "architecture": {
         "64bit": {
-            "url": "https://typora.io/windows/typora-setup-x64.exe",
-            "hash": "ac11151e906f78f79294f6f7656ac67426ac0de95a322eefffe15cbde502206c"
+            "url": "https://download.typora.io/windows/typora-setup-x64-1.14.15.exe",
+            "hash": "038e2af96968cbd55b7c418c9ad40b2cf45ffc8cc04dbc1cc98488f40e0a5c62"
         },
         "32bit": {
-            "url": "https://typora.io/windows/typora-setup-ia32.exe",
-            "hash": "b8fef97119001c768df262b617d0ea636c45016854013963c213a15dcd948d93"
+            "url": "https://download.typora.io/windows/typora-setup-ia32-1.14.15.exe",
+            "hash": "41c0eaf5baa32f76ceec2f0bd2f01237025cbe17fd9ebbb541172cb906b3326c"
         }
     },
     "innosetup": true,
@@ -26,16 +32,16 @@
         ]
     ],
     "checkver": {
-        "url": "https://typora.io/releases/stable",
-        "regex": "<h2>([\\d.]+)"
+        "url": "https://typora.io/releases/windows_64.json",
+        "jsonpath": "$.version"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://typora.io/windows/typora-setup-x64.exe"
+                "url": "https://download.typora.io/windows/typora-setup-x64-$version.exe"
             },
             "32bit": {
-                "url": "https://typora.io/windows/typora-setup-ia32.exe"
+                "url": "https://download.typora.io/windows/typora-setup-ia32-$version.exe"
             }
         }
     }

@@ -1,5 +1,5 @@
 {
-    "version": "2.5.0",
+    "version": "2.6.0",
     "description": "A popular dependency manager focusing on flexibility and simplicity.",
     "homepage": "https://ant.apache.org/ivy/index.html",
     "license": "Apache-2.0",
@@ -10,9 +10,9 @@
             "java/openjdk"
         ]
     },
-    "url": "https://www.apache.org/dist/ant/ivy/2.5.0/apache-ivy-2.5.0-bin.zip",
-    "hash": "7c6f467e33c28d82f4f8c3c10575bb461498ad8dcabf57770f481bfea59b1e59",
-    "extract_dir": "apache-ivy-2.5.0",
+    "url": "https://downloads.apache.org/ant/ivy/2.6.0/apache-ivy-2.6.0-bin.zip",
+    "hash": "sha512:71f5834ff8619abb72b2440396efa4aa4dd6c1ce4f81bbcd1c62aac39c77a903802937932ca8e7376a5464de952270dede75091dc8393bc3a4d478619a43f7ac",
+    "extract_dir": "apache-ivy-2.6.0",
     "installer": {
         "script": [
             "$antLibPath = \"$(appsdir $global)\\ant\\current\\lib\"",
@@ -32,9 +32,9 @@
         "regex": "/([\\d.]+)/"
     },
     "autoupdate": {
-        "url": "https://www.apache.org/dist/ant/ivy/$version/apache-ivy-$version-bin.zip",
+        "url": "https://downloads.apache.org/ant/ivy/$version/apache-ivy-$version-bin.zip",
         "hash": {
-            "url": "$url.sha"
+            "url": "$url.sha512"
         },
         "extract_dir": "apache-ivy-$version"
     }

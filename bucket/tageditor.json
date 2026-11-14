@@ -1,20 +1,19 @@
 {
-    "version": "3.5.1",
+    "version": "3.9.11",
     "description": "A tag editor utility supporting MP4/M4A/AAC (iTunes), ID3, Vorbis, Opus, FLAC and Matroska.",
     "homepage": "https://github.com/Martchus/tageditor",
     "license": "GPL-2.0-only",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/Martchus/tageditor/releases/download/v3.5.1/tageditor-qt6-3.5.1-x86_64-w64-mingw32.exe.zip",
-            "hash": "86829c4800bd2e9597da8d2586a597dc5b79e2652e74717f2f87dbfcae7db4a1"
+            "url": "https://github.com/Martchus/tageditor/releases/download/v3.9.11/tageditor-3.9.11-x86_64-w64-mingw32.exe.zip",
+            "hash": "f1a7f33561bda19e833b1eb3b5cfcdae83fe1f37c6806623f86f20cc3038b090"
         },
-        "32bit": {
-            "url": "https://github.com/Martchus/tageditor/releases/download/v3.5.1/tageditor-qt6-3.5.1-i686-w64-mingw32.exe.zip",
-            "hash": "61f61107a13b07bf41b3d4621487eb873304e8a080c5c9568e4b28e9c57d5543"
+        "arm64": {
+            "url": "https://github.com/Martchus/tageditor/releases/download/v3.9.11/tageditor-3.9.11-aarch64-w64-mingw32.exe.zip",
+            "hash": "3a8310d02890f966f1a44de8223cc866cd987473ba199ddd850a8a65e1bb7020"
         }
     },
-    "pre_install": "Rename-Item \"$dir\\$($fname -replace '\\.zip')\" 'tageditor.exe'",
-    "bin": "tageditor.exe",
+    "bin": "tageditor-cli.exe",
     "shortcuts": [
         [
             "tageditor.exe",
@@ -25,10 +24,10 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/Martchus/tageditor/releases/download/v$version/tageditor-qt6-$version-x86_64-w64-mingw32.exe.zip"
+                "url": "https://github.com/Martchus/tageditor/releases/download/v$version/tageditor-$version-x86_64-w64-mingw32.exe.zip"
             },
-            "32bit": {
-                "url": "https://github.com/Martchus/tageditor/releases/download/v$version/tageditor-qt6-$version-i686-w64-mingw32.exe.zip"
+            "arm64": {
+                "url": "https://github.com/Martchus/tageditor/releases/download/v$version/tageditor-$version-aarch64-w64-mingw32.exe.zip"
             }
         }
     }

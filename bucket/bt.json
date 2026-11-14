@@ -1,14 +1,20 @@
 {
-    "version": "2.1",
+    "version": "5.6.12",
     "description": "Opens required browser based on configuration",
     "homepage": "https://www.aloneguid.uk/projects/bt/",
     "license": "Freeware",
     "architecture": {
         "64bit": {
-            "url": "https://www.aloneguid.uk/projects/bt/bin/bt-2.1.zip",
-            "hash": "cdf9827246daffc999ce476728a3ef578c00399054b1b6618d3b0fa7dfc41f23"
+            "url": "https://github.com/aloneguid/bt/releases/download/5.6.12/bt.zip",
+            "hash": "c631113cb854b96019f5cd266d63a3fe98b1d0eb7023f80ef97e44a3aafd412c"
         }
     },
+    "pre_install": [
+        "# Portable",
+        "New-Item \"$dir\\.portable\" -ItemType File | Out-Null",
+        "if (!(Test-Path \"$persist_dir\\config.ini\")) { New-Item \"$dir\\config.ini\" -ItemType File | Out-Null }",
+        "if (!(Test-Path \"$persist_dir\\hit_log.csv\")) { New-Item \"$dir\\hit_log.csv\" -ItemType File | Out-Null }"
+    ],
     "bin": "bt.exe",
     "shortcuts": [
         [
@@ -16,14 +22,17 @@
             "Browser Tamer"
         ]
     ],
+    "persist": [
+        "config.ini",
+        "hit_log.csv"
+    ],
     "checkver": {
-        "url": "https://www.aloneguid.uk/projects/bt/bin/latest.txt",
-        "regex": "([\\d.]+)"
+        "github": "https://github.com/aloneguid/bt"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://www.aloneguid.uk/projects/bt/bin/bt-$version.zip"
+                "url": "https://github.com/aloneguid/bt/releases/download/$version/bt.zip"
             }
         }
     }

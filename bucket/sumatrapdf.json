@@ -1,16 +1,20 @@
 {
-    "version": "3.3.3",
+    "version": "3.6.1",
     "description": "PDF and eBook reader",
     "homepage": "https://www.sumatrapdfreader.org/free-pdf-reader",
     "license": "GPL-3.0-only,BSD-2-Clause",
     "architecture": {
         "64bit": {
-            "url": "https://kjkpubsf.sfo2.digitaloceanspaces.com/software/sumatrapdf/rel/SumatraPDF-3.3.3-64.zip",
-            "hash": "a4d531e23265a4960ab63ce0217dbafd42647f1b17ee870e599fd267251434ad"
+            "url": "https://www.sumatrapdfreader.org/dl/rel/3.6.1/SumatraPDF-3.6.1-64.zip",
+            "hash": "98b33a518d42986856d225064b0cd2d3643ecf78cbf84ab873d26cc51877a544"
         },
         "32bit": {
-            "url": "https://kjkpubsf.sfo2.digitaloceanspaces.com/software/sumatrapdf/rel/SumatraPDF-3.3.3.zip",
-            "hash": "13801df7d486bae6d065be8ab65768b3603ce95141dd8a695090ecb034fa2c0a"
+            "url": "https://www.sumatrapdfreader.org/dl/rel/3.6.1/SumatraPDF-3.6.1.zip",
+            "hash": "670e694a5c91633d28ab0df689b4dbf92021183cfe82270ae552cb617a0a07ed"
+        },
+        "arm64": {
+            "url": "https://www.sumatrapdfreader.org/dl/rel/3.6.1/SumatraPDF-3.6.1-arm64.zip",
+            "hash": "f21091ca6741e4049b0ca375121708a7959803d39336f0468084808943667ffe"
         }
     },
     "pre_install": [
@@ -39,10 +43,13 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://kjkpubsf.sfo2.digitaloceanspaces.com/software/sumatrapdf/rel/SumatraPDF-$version-64.zip"
+                "url": "https://www.sumatrapdfreader.org/dl/rel/$version/SumatraPDF-$version-64.zip"
             },
             "32bit": {
-                "url": "https://kjkpubsf.sfo2.digitaloceanspaces.com/software/sumatrapdf/rel/SumatraPDF-$version.zip"
+                "url": "https://www.sumatrapdfreader.org/dl/rel/$version/SumatraPDF-$version.zip"
+            },
+            "arm64": {
+                "url": "https://www.sumatrapdfreader.org/dl/rel/$version/SumatraPDF-$version-arm64.zip"
             }
         }
     }

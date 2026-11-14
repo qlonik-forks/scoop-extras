@@ -1,16 +1,16 @@
 {
-    "version": "0.21.2",
+    "version": "26.3",
     "description": "Real time realistic skies generator",
     "homepage": "https://stellarium.org",
     "license": "GPL-2.0-only",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/Stellarium/stellarium/releases/download/v0.21.2/stellarium-0.21.2-win64.exe",
-            "hash": "eff51315b0d3200ef0ecbb8deb8ffc3fe649162b32d577bf5701953709588af0"
+            "url": "https://github.com/Stellarium/stellarium/releases/download/v26.3/stellarium-26.3-qt6-win64.exe",
+            "hash": "06d0444e02bca3ad9703e08a641270576c1df581088eb3e7549870887e039cd8"
         },
-        "32bit": {
-            "url": "https://github.com/Stellarium/stellarium/releases/download/v0.21.2/stellarium-0.21.2-win32.exe",
-            "hash": "d98169a9d268ba4289f6f9a49add7c2bd4a7a2e17158c52ea1712ca66affaa65"
+        "arm64": {
+            "url": "https://github.com/Stellarium/stellarium/releases/download/v26.3/stellarium-26.3-qt6-arm64.exe",
+            "hash": "06deb597dd6e1f6cc6e3bb2399df98369cdc61028eef61862bb3a49045ab75ec"
         }
     },
     "innosetup": true,
@@ -22,20 +22,17 @@
         ]
     ],
     "checkver": {
-        "github": "https://github.com/Stellarium/stellarium"
+        "url": "https://github.com/Stellarium/stellarium/releases",
+        "regex": "(?sm)stellarium-(?<long>[\\d\\.]+)\\.tar\\.gz</.*?Stellarium (?<version>[\\d\\.]+) for"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/Stellarium/stellarium/releases/download/v$version/stellarium-$version-win64.exe"
+                "url": "https://github.com/Stellarium/stellarium/releases/download/v$version/stellarium-$matchLong-qt6-win64.exe"
             },
-            "32bit": {
-                "url": "https://github.com/Stellarium/stellarium/releases/download/v$version/stellarium-$version-win32.exe"
+            "arm64": {
+                "url": "https://github.com/Stellarium/stellarium/releases/download/v$version/stellarium-$matchLong-qt6-arm64.exe"
             }
-        },
-        "hash": {
-            "url": "https://github.com/Stellarium/stellarium/releases/tag/v$version",
-            "regex": "(?sm)$basename</.*?SHA256</strong>:\\s+$sha256"
         }
     }
 }

@@ -1,16 +1,18 @@
 {
-    "version": "2.3.4",
+    "version": "2.5.6",
     "description": "Twitch chat client",
     "homepage": "https://chatterino.com",
     "license": "MIT",
     "suggest": {
-        "Microsoft Visual C++ Redistributable 2017": "extras/vcredist2017",
-        "Microsoft Visual C++ Redistributable 2013": "extras/vcredist2013"
+        "vcredist": [
+            "extras/vcredist2013",
+            "extras/vcredist2022"
+        ]
     },
     "architecture": {
         "64bit": {
-            "url": "https://chatterino.fra1.digitaloceanspaces.com/bin/2.3.4/Chatterino%20Portable.zip",
-            "hash": "595438251a155c88efaf5a97a490984641c324b5237c99a1c6a89d290134ef84"
+            "url": "https://github.com/Chatterino/chatterino2/releases/download/v2.5.6/Chatterino.Portable.zip",
+            "hash": "7256ef095959a1e56ffee9573260d79878d87d24dff8486025b7da241b99bc3d"
         }
     },
     "extract_dir": "chatterino2",
@@ -22,17 +24,20 @@
         ]
     ],
     "persist": [
-        "Settings",
         "Cache",
         "Logs",
         "Misc",
-        "ProfileAvatars"
+        "ProfileAvatars",
+        "Settings",
+        "Themes"
     ],
-    "checkver": "/([\\d.]+)/Chatterino%20Portable",
+    "checkver": {
+        "github": "https://github.com/Chatterino/chatterino2"
+    },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://chatterino.fra1.digitaloceanspaces.com/bin/$version/Chatterino%20Portable.zip"
+                "url": "https://github.com/Chatterino/chatterino2/releases/download/v$version/Chatterino.Portable.zip"
             }
         },
         "extract_dir": "chatterino$majorVersion"

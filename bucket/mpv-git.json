@@ -1,27 +1,27 @@
 {
-    "version": "20211205",
-    "description": "Video player based on MPlayer/mplayer2 (builds by shinchiro)",
+    "version": "202611141252",
+    "description": "A free, open source, and cross-platform media player",
     "homepage": "https://mpv.io",
     "license": "LGPL-2.1-or-later,GPL-2.0-or-later",
     "notes": [
-        "To set up file type associations and AutoPlay handlers run '$dir\\installer\\mpv-install.bat' as administrator.",
-        "This doesn't need to be done everytime you update mpv however, do keep in mind that if you want to uninstall mpv you'll need to run '$dir\\installer\\mpv-uninstall.bat' beforehand since this action will not be performed automatically.",
-        "You can use Icaros (https://www.majorgeeks.com/files/details/icaros.html) to enable thumbnails for all media types."
+        "To set and unset file type associations and AutoPlay handlers, run '$dir\\mpv-register.bat' and '$dir\\mpv-unregister.bat', respectively.",
+        "You can use Icaros ('nonportable/icaros-np') to enable thumbnails for all media types."
     ],
     "suggest": {
-        "youtube-dl": "youtube-dl"
+        "yt-dlp": "yt-dlp"
     },
     "architecture": {
         "64bit": {
-            "url": "https://downloads.sourceforge.net/project/mpv-player-windows/64bit/mpv-x86_64-20211205-git-fc94c8c.7z",
-            "hash": "sha1:7398a96a89de548c05735ab625f6b59d08cb55f2"
+            "url": "https://github.com/zhongfly/mpv-winbuild/releases/download/2026-11-14-649001d4e2/mpv-x86_64-20261114-git-649001d4e2.7z",
+            "hash": "7b43e3c31c981a85990334b8fb96922fcbb5c0a0ece53e66f110756ff9458512"
         },
-        "32bit": {
-            "url": "https://downloads.sourceforge.net/project/mpv-player-windows/32bit/mpv-i686-20211205-git-fc94c8c.7z",
-            "hash": "sha1:a855204995fda724823458042c7b70838e95c1f9"
+        "arm64": {
+            "url": "https://github.com/zhongfly/mpv-winbuild/releases/download/2026-11-14-649001d4e2/mpv-aarch64-20261114-git-649001d4e2.7z",
+            "hash": "790308d7c14d94d72ec829bd718a6d33d051e29e78eb80cf8b97808a9b381449"
         }
     },
-    "bin": "mpv.com",
+    "pre_install": "'updater.bat', 'installer' | ForEach-Object { Remove-Item \"$dir\\$_\" -Recurse }",
+    "env_add_path": ".",
     "shortcuts": [
         [
             "mpv.exe",
@@ -30,16 +30,22 @@
     ],
     "persist": "portable_config",
     "checkver": {
-        "url": "https://sourceforge.net/projects/mpv-player-windows/rss?path=/64bit",
-        "regex": "mpv-x86_64-(\\d+)-git-(?<commit>[\\da-f]+)\\.7z"
+        "github": "https://api.github.com/repos/zhongfly/mpv-winbuild/releases/latest",
+        "script": [
+            "$tag = [regex]::Match($page, '\"tag_name\"\\s*:\\s*\"(?<tag>[^\"]+)\"').Groups['tag'].Value",
+            "$updated = [regex]::Match($page, '\"updated_at\"\\s*:\\s*\"(?<updated>[^\"]+)\"').Groups['updated'].Value",
+            "if (-not $tag -or -not $updated) { error 'Failed to parse release JSON'; return }",
+            "\"$tag $($updated -replace '[-:TZ]', '')\""
+        ],
+        "regex": "^(?<tag>(?<year>\\d{4})-(?<month>\\d{2})-(?<day>\\d{2})-(?<commit>[a-f0-9]{10})) (?<version>\\d{12})\\d+$"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://downloads.sourceforge.net/project/mpv-player-windows/64bit/mpv-x86_64-$version-git-$matchCommit.7z"
+                "url": "https://github.com/zhongfly/mpv-winbuild/releases/download/$matchTag/mpv-x86_64-$matchYear$matchMonth$matchDay-git-$matchCommit.7z"
             },
-            "32bit": {
-                "url": "https://downloads.sourceforge.net/project/mpv-player-windows/32bit/mpv-i686-$version-git-$matchCommit.7z"
+            "arm64": {
+                "url": "https://github.com/zhongfly/mpv-winbuild/releases/download/$matchTag/mpv-aarch64-$matchYear$matchMonth$matchDay-git-$matchCommit.7z"
             }
         }
     }

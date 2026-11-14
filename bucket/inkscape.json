@@ -1,22 +1,29 @@
 {
-    "version": "1.1",
+    "version": "1.4.4",
     "description": "Professional vector graphics editor",
     "homepage": "https://inkscape.org",
     "license": "GPL-3.0-or-later",
+    "notes": [
+        "Due to an issue with the previous versioning scheme, Scoop may incorrectly identify the older version as newer.",
+        "Please run the following command to force an update if the update is not triggered despite a new version being available: scoop update inkscape --force",
+        "For more details, see: https://github.com/ScoopInstaller/Extras/issues/17136"
+    ],
     "architecture": {
         "64bit": {
-            "url": "https://media.inkscape.org/dl/resources/file/inkscape-1.1-x64.7z",
-            "hash": "0538bc76fb962c7aa99f2f757dfc0bf3eee986e06ec73605e8a62750e3e2ccd2"
-        },
-        "32bit": {
-            "url": "https://media.inkscape.org/dl/resources/file/inkscape-1.1-x86.7z",
-            "hash": "22ca6feb4f2c130663fd79a5edd7ca8412b9628fa31ab8bef11b68dd85ebcacc"
+            "url": "https://media.inkscape.org/dl/resources/file/inkscape-1.4.4_2026-05-05_dcaf3e7-x64_mHK170m.7z",
+            "hash": "c4dbd64a92628abe7d7316c43f9325396e4d48417866027ee3d993d4f5b54c6a"
         }
     },
     "extract_dir": "inkscape",
     "bin": [
-        "bin\\inkscape.com",
-        "bin\\inkview.com"
+        [
+            "bin\\inkscape.com",
+            "inkscape"
+        ],
+        [
+            "bin\\inkview.com",
+            "inkview"
+        ]
     ],
     "shortcuts": [
         [
@@ -25,20 +32,19 @@
         ]
     ],
     "checkver": {
-        "url": "https://inkscape.org/release",
-        "regex": ">Inkscape\\s+([\\d.]+)</"
+        "script": [
+            "$redirUrl = [System.Net.HttpWebRequest]::Create('https://inkscape.org/release/').GetResponse().ResponseUri.AbsoluteUri",
+            "$test_dl = Invoke-WebRequest ($redirUrl + 'windows/64-bit/compressed-7z/dl/') -UseBasicParsing",
+            "$filename = ($test_dl.Links | Where-Object href -match '.7z$' | Select-Object -First 1 -ExpandProperty href) -split '/' | Select-Object -Last 1",
+            "Write-Output $filename"
+        ],
+        "regex": "(?<cleanfilename>inkscape-(\\d+(?:\\.\\d+)+).*?)\\.7z"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://media.inkscape.org/dl/resources/file/inkscape-$version-x64.7z"
-            },
-            "32bit": {
-                "url": "https://media.inkscape.org/dl/resources/file/inkscape-$version-x86.7z"
+                "url": "https://media.inkscape.org/dl/resources/file/$matchCleanfilename.7z"
             }
-        },
-        "hash": {
-            "url": "https://media.inkscape.org/media/resources/sigs/$basename.sha256"
         }
     }
 }

@@ -1,0 +1,44 @@
+{
+    "version": "1.6.2",
+    "description": "Encrypted peer-to-peer clipboard sync between your devices",
+    "homepage": "https://uniclipboard.app",
+    "license": "AGPL-3.0-only",
+    "notes": "UniClipboard runs in portable mode here: your encrypted data lives in the persisted `data` folder next to the executable and is kept across updates.",
+    "suggest": {
+        "Microsoft Edge WebView2": "extras/webview2"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/UniClipboard/UniClipboard/releases/download/v1.6.2/UniClipboard_1.6.2_x64-portable.zip",
+            "hash": "e6452c48eef4341488fecc4065357daf3b49a86aab4cc2aabf274192b5630848"
+        },
+        "arm64": {
+            "url": "https://github.com/UniClipboard/UniClipboard/releases/download/v1.6.2/UniClipboard_1.6.2_arm64-portable.zip",
+            "hash": "c50952fb8a290af6c930afa85110f9d8b11d8279de07cc5b0623ec82c51874ae"
+        }
+    },
+    "bin": "UniClipboard.exe",
+    "shortcuts": [
+        [
+            "UniClipboard.exe",
+            "UniClipboard"
+        ]
+    ],
+    "persist": "data",
+    "checkver": {
+        "github": "https://github.com/UniClipboard/UniClipboard"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/UniClipboard/UniClipboard/releases/download/v$version/UniClipboard_$version_x64-portable.zip"
+            },
+            "arm64": {
+                "url": "https://github.com/UniClipboard/UniClipboard/releases/download/v$version/UniClipboard_$version_arm64-portable.zip"
+            }
+        },
+        "hash": {
+            "url": "$baseurl/SHA256SUMS.txt"
+        }
+    }
+}

@@ -1,16 +1,16 @@
 {
-    "version": "1.2.0",
-    "description": "An anti-rookit(ARK) tool",
-    "homepage": "https://openark.blackint3.com",
+    "version": "3.0.0",
+    "description": "The Next Generation Anti-Rootkit (ARK) tool for Windows.",
+    "homepage": "http://openark.blackint3.com:88",
     "license": "LGPL-2.1-only",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/BlackINT3/OpenArk/releases/download/v1.2.0/OpenArk64.exe#/OpenArk.exe",
-            "hash": "6f63ff7e684f4739687dddb4a4389a87d5aeb9c00eb2b89a40caccd9d1fcadde"
+            "url": "http://file.blackint3.com:88/openark/OpenArk64.exe#/OpenArk.exe",
+            "hash": "sha1:05c10a4345eade65873e49fdeede49cc72c23a57"
         },
         "32bit": {
-            "url": "https://github.com/BlackINT3/OpenArk/releases/download/v1.2.0/OpenArk32.exe#/OpenArk.exe",
-            "hash": "5ae6de952c753d1e018621d4c041ff23e52568c6d51f3e66c42ee3121c7e2b6e"
+            "url": "http://file.blackint3.com:88/openark/OpenArk32.exe#/OpenArk.exe",
+            "hash": "sha1:753bbee6f1fcd37ff509b870224721dbce8bf671"
         }
     },
     "shortcuts": [
@@ -20,16 +20,21 @@
         ]
     ],
     "checkver": {
-        "github": "https://github.com/BlackINT3/OpenArk"
+        "url": "http://openark.blackint3.com:88/release/",
+        "regex": "(?i)>OpenArk\\s*v([\\d.]+)<"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/BlackINT3/OpenArk/releases/download/v$version/OpenArk64.exe#/OpenArk.exe"
+                "url": "http://file.blackint3.com:88/openark/OpenArk64.exe#/OpenArk.exe"
             },
             "32bit": {
-                "url": "https://github.com/BlackINT3/OpenArk/releases/download/v$version/OpenArk32.exe#/OpenArk.exe"
+                "url": "http://file.blackint3.com:88/openark/OpenArk32.exe#/OpenArk.exe"
             }
+        },
+        "hash": {
+            "url": "http://openark.blackint3.com:88/release/openark-v$cleanVersion",
+            "regex": ">$basename</a>\\s*$sha1\\s*\\(SHA1\\)"
         }
     }
 }

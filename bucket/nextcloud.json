@@ -1,15 +1,15 @@
 {
-    "version": "3.3.6",
+    "version": "35.0.3",
     "description": "Desktop sync client for Nextcloud, a self-hosted productivity platform",
     "homepage": "https://nextcloud.com/",
     "license": "GPL-2.0-or-later",
     "suggest": {
-        "Microsoft Visual C++ Redistributable 2017": "extras/vcredist2017"
+        "vcredist": "extras/vcredist2022"
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/nextcloud/desktop/releases/download/v3.3.6/Nextcloud-3.3.6-x64.msi",
-            "hash": "a9e18d8d9a000f8a24b332ab2498399536c93429d8931a90f23cb40d05ad8399"
+            "url": "https://github.com/nextcloud-releases/desktop/releases/download/v35.0.3/Nextcloud-35.0.3-x64.msi",
+            "hash": "09dbaecd4585078f33cbcd62482fc244d2146a92aeef2f3324a68478b12685d2"
         }
     },
     "extract_dir": "PFiles\\Nextcloud",
@@ -28,12 +28,12 @@
     ],
     "checkver": {
         "url": "https://nextcloud.com/install/",
-        "regex": "Latest stable version: ([\\d.]+)"
+        "regex": "Nextcloud-([\\d.]+)-x64.msi"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/nextcloud/desktop/releases/download/v$version/Nextcloud-$version-x64.msi"
+                "url": "https://github.com/nextcloud-releases/desktop/releases/download/v$version/Nextcloud-$version-x64.msi"
             }
         }
     }

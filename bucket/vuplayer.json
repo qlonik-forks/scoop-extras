@@ -1,16 +1,16 @@
 {
-    "version": "4.13",
-    "description": "Audio player",
-    "homepage": "http://www.vuplayer.com",
+    "version": "4.25",
+    "description": "An open-source multi-format audio player.",
+    "homepage": "https://github.com/jfchapman/VUPlayer",
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/jfchapman/VUPlayer/releases/download/v4.13/VUPlayer4_64bit.zip",
-            "hash": "810cffc86d3e071f8ed4581f5fc1b13585281fa2c13fafc6708a02ce042a2308"
+            "url": "https://github.com/jfchapman/VUPlayer/releases/download/v4.25/VUPlayer4_64bit.zip",
+            "hash": "2717e610f5b03880d45a5de4137c5e06979b2a714735e1bf3d8cdab0eb5d19f3"
         },
         "32bit": {
-            "url": "https://github.com/jfchapman/VUPlayer/releases/download/v4.13/VUPlayer4_32bit.zip",
-            "hash": "09be7a2099b58f5a227cfaaf50141f223edbd7385ed7f4613f3cf6080be8cf2f"
+            "url": "https://github.com/jfchapman/VUPlayer/releases/download/v4.25/VUPlayer4_32bit.zip",
+            "hash": "e466f1f9582640d14875c9c6c47cdcdfb1e0d628f165352fe0e4e0592e5c6eb6"
         }
     },
     "bin": "VUPlayer.exe",
@@ -20,9 +20,7 @@
             "VUPlayer"
         ]
     ],
-    "checkver": {
-        "github": "https://github.com/jfchapman/VUPlayer"
-    },
+    "checkver": "github",
     "autoupdate": {
         "architecture": {
             "64bit": {

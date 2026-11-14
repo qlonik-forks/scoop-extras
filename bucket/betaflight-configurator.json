@@ -1,11 +1,16 @@
 {
-    "version": "10.7.1",
+    "version": "10.10.0",
     "description": "A configuration tool for the Betaflight flight control system",
     "homepage": "https://betaflight.com",
     "license": "GPL-3.0-or-later",
-    "url": "https://github.com/betaflight/betaflight-configurator/releases/download/10.7.1/betaflight-configurator-installer_10.7.1_win32.exe#/dl.7z",
-    "hash": "793328ca6dd9309b094393e2d7d2f4a3c5609c9af71531e1ea4fb8610119cb2c",
-    "pre_install": "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\uninstall*\" -Recurse",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/betaflight/betaflight-configurator/releases/download/10.10.0/betaflight-configurator_10.10.0_win64-installer.exe",
+            "hash": "82f6c0ab9e31c23852c856bd8ab5ed0a94d2560d9cd4d24a218ffb39a006d310"
+        }
+    },
+    "innosetup": true,
+    "pre_install": "Remove-Item \"$dir\\uninstall*\" -Recurse",
     "bin": "betaflight-configurator.exe",
     "shortcuts": [
         [
@@ -17,6 +22,10 @@
         "github": "https://github.com/betaflight/betaflight-configurator"
     },
     "autoupdate": {
-        "url": "https://github.com/betaflight/betaflight-configurator/releases/download/$version/betaflight-configurator-installer_$version_win32.exe#/dl.7z"
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/betaflight/betaflight-configurator/releases/download/$version/betaflight-configurator_$version_win64-installer.exe"
+            }
+        }
     }
 }

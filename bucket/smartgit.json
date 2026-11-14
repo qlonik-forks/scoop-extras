@@ -1,15 +1,15 @@
 {
-    "version": "21.2.0",
+    "version": "26.1.057",
     "description": "A graphical Git client with support for SVN and Pull Requests for GitHub and Bitbucket.",
-    "homepage": "https://www.syntevo.com/smartgit/",
+    "homepage": "https://www.smartgit.dev/",
     "license": {
         "identifier": "Proprietary",
-        "url": "https://www.syntevo.com/documents/smartgit-license.html"
+        "url": "https://www.smartgit.dev/documents/smartgit-license"
     },
     "architecture": {
         "64bit": {
-            "url": "https://www.syntevo.com/downloads/smartgit/smartgit-portable-21_2_0.7z",
-            "hash": "sha1:ce81c44eae00fc7f4e161e318ca29b4c97dcb4ad"
+            "url": "https://download.smartgit.dev/smartgit/smartgit-26_1_057-win-portable.7z",
+            "hash": "a9da90baa7bab43a4f132f1f3832206bb109eb0547f36e555162d0f7d746ad2f"
         }
     },
     "extract_dir": "SmartGit",
@@ -28,18 +28,17 @@
     ],
     "persist": ".settings",
     "checkver": {
-        "url": "https://www.syntevo.com/smartgit/changelog.txt",
-        "regex": "SmartGit\\s+([\\d.]+)\\s+\\("
+        "url": "https://www.smartgit.dev/download/",
+        "regex": ">Version ([\\d.]+)<"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://www.syntevo.com/downloads/smartgit/smartgit-portable-$underscoreVersion.7z",
-                "hash": {
-                    "url": "https://www.syntevo.com/smartgit/download/",
-                    "regex": "$basename[\\S\\s]+?$sha1"
-                }
+                "url": "https://download.smartgit.dev/smartgit/smartgit-$underscoreVersion-win-portable.7z"
             }
+        },
+        "hash": {
+            "url": "$url.sha256"
         }
     }
 }

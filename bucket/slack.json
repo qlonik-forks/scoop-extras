@@ -1,5 +1,5 @@
 {
-    "version": "4.22.0",
+    "version": "4.53.287",
     "description": "Collaboration software",
     "homepage": "https://slack.com",
     "license": {
@@ -8,15 +8,15 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://downloads.slack-edge.com/releases/windows/4.22.0/prod/x64/slack-4.22.0-full.nupkg",
-            "hash": "sha1:c000d7c6ae6468fbaca6d74df1eb7d2540021689"
+            "url": "https://downloads.slack-edge.com/desktop-releases/windows/x64/4.53.287/Slack.msix#/dl.zip",
+            "hash": "eb9e757665012204b9cbadf5bf29492b3f0313c801258541994dbbcbda2e38d6"
         },
-        "32bit": {
-            "url": "https://downloads.slack-edge.com/releases/windows/4.22.0/prod/ia32/slack-4.22.0-full.nupkg",
-            "hash": "sha1:29e50f8fc6a9ab22c52f06eb357c2a4b14664385"
+        "arm64": {
+            "url": "https://downloads.slack-edge.com/desktop-releases/windows/arm64/4.53.287/Slack.msix#/dl.zip",
+            "hash": "4c920a98f3dd18e6d06a8ea8a5c11904fa501de4001bf786e88f339a6a8dd779"
         }
     },
-    "extract_dir": "lib\\net45",
+    "extract_dir": "app",
     "bin": "slack.exe",
     "shortcuts": [
         [
@@ -25,20 +25,17 @@
         ]
     ],
     "checkver": {
-        "url": "https://slack.com/intl/en-cn/release-notes/windows",
-        "regex": "<h2>Slack ([\\d.]+)"
+        "url": "https://slack.com/release-notes/windows",
+        "regex": "<h2 .+?>Slack ([\\d.]+)"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://downloads.slack-edge.com/releases/windows/$version/prod/x64/slack-$version-full.nupkg"
+                "url": "https://downloads.slack-edge.com/desktop-releases/windows/x64/$version/Slack.msix#/dl.zip"
             },
-            "32bit": {
-                "url": "https://downloads.slack-edge.com/releases/windows/$version/prod/ia32/slack-$version-full.nupkg"
+            "arm64": {
+                "url": "https://downloads.slack-edge.com/desktop-releases/windows/arm64/$version/Slack.msix#/dl.zip"
             }
-        },
-        "hash": {
-            "url": "$baseurl/RELEASES"
         }
     }
 }

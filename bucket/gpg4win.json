@@ -1,30 +1,29 @@
 {
-    "version": "3.1.16",
+    "version": "5.1.1",
     "description": "GNU Privacy Guard for Windows is encryption software for files and emails.",
     "homepage": "https://www.gpg4win.org",
     "license": "GPL-2.0-or-later",
-    "url": "https://files.gpg4win.org/gpg4win-3.1.16.exe",
-    "hash": "c499213ff3e14e93c3b245546994cc0e654ec267b40a188788665ae8f4e9f5ad",
-    "installer": {
-        "args": [
-            "/S",
-            "/D=$dir\\Gpg4win"
-        ]
+    "architecture": {
+        "64bit": {
+            "url": "https://files.gpg4win.org/gpg4win-5.1.1.exe",
+            "hash": "ed19c0c89ec42fe32c52a7abd6e3da5f491752700546b9eed7ddf82fd303cddf"
+        }
     },
-    "uninstaller": {
-        "file": "Gpg4win\\gpg4win-uninstall.exe",
-        "args": "/S"
-    },
-    "env_add_path": [
-        "GnuPG\\bin",
-        "Gpg4win\\bin"
+    "post_install": [
+        "Start-Process \"$dir\\$fname\" -ArgumentList @('/S', \"/D=$dir\\Gpg4win\") -WindowStyle Hidden -Wait",
+        "Remove-Item \"$dir\\$fname\""
     ],
+    "pre_uninstall": "Start-Process \"$dir\\Gpg4win\\gpg4win-uninstall.exe\" '/S' -Wait",
     "checkver": {
         "url": "https://www.gpg4win.org/get-gpg4win.html",
         "regex": "Download Gpg4win ([\\d.]+)"
     },
     "autoupdate": {
-        "url": "https://files.gpg4win.org/gpg4win-$version.exe",
+        "architecture": {
+            "64bit": {
+                "url": "https://files.gpg4win.org/gpg4win-$version.exe"
+            }
+        },
         "hash": {
             "url": "https://gpg4win.org/package-integrity.html"
         }

@@ -1,10 +1,10 @@
 {
-    "version": "1.53.1087",
+    "version": "1.55.133",
     "description": "Recover your deleted files quickly and easily.",
     "homepage": "https://www.ccleaner.com/recuva",
     "license": "Freeware",
-    "url": "https://download.ccleaner.com/rcsetup153.exe#/dl.7z",
-    "hash": "189a868b9a175a3c303aed14688f33848a19e439d7b333dc5ae24853daee0870",
+    "url": "https://download.ccleaner.com/rcsetup155.exe#/dl.7z",
+    "hash": "6440c5e69e01da6ec4345a7264145d65221a139a46c13e26a21ad18b04663244",
     "architecture": {
         "64bit": {
             "bin": [

@@ -1,12 +1,12 @@
 {
-    "version": "1.45",
+    "version": "1.68",
     "description": "A hardware monitoring program that reads PC systems main health sensors : voltages, temperatures, fans speed.",
     "homepage": "https://www.cpuid.com/softwares/hwmonitor.html",
     "license": "Unknown",
     "architecture": {
         "64bit": {
-            "url": "http://download.cpuid.com/hwmonitor/hwmonitor_1.45.zip",
-            "hash": "a051300f95e8562b87dd7374af8f829663e12fac6c33a14729d1fffc5a8bb6a8",
+            "url": "https://download.cpuid.com/hwmonitor/hwmonitor_1.68.zip",
+            "hash": "8888216170042c9be33771728521df046f6ceecbba397945c976e899570743a6",
             "bin": [
                 [
                     "hwmonitor_x64.exe",
@@ -21,8 +21,8 @@
             ]
         },
         "32bit": {
-            "url": "http://download.cpuid.com/hwmonitor/hwmonitor_1.45.zip",
-            "hash": "a051300f95e8562b87dd7374af8f829663e12fac6c33a14729d1fffc5a8bb6a8",
+            "url": "https://download.cpuid.com/hwmonitor/hwmonitor_1.68.zip",
+            "hash": "8888216170042c9be33771728521df046f6ceecbba397945c976e899570743a6",
             "bin": [
                 [
                     "hwmonitor_x32.exe",
@@ -41,10 +41,10 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "http://download.cpuid.com/hwmonitor/hwmonitor_$version.zip"
+                "url": "https://download.cpuid.com/hwmonitor/hwmonitor_$version.zip"
             },
             "32bit": {
-                "url": "http://download.cpuid.com/hwmonitor/hwmonitor_$version.zip"
+                "url": "https://download.cpuid.com/hwmonitor/hwmonitor_$version.zip"
             }
         }
     }

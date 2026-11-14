@@ -1,14 +1,14 @@
 {
-    "version": "4.3",
+    "version": "4.5",
     "description": "An image converter and renaming tool",
     "homepage": "https://www.faststone.org/FSResizerDetail.htm",
     "license": {
         "identifier": "Shareware",
         "url": "https://www.faststone.org/order.htm"
     },
-    "url": "http://www.faststonesoft.net/DN/FSResizer43.zip",
-    "hash": "4ec749cb49ee27ede8dea664e3b1c868b64875d94e2dda3a7aa4c610d5bd5c63",
-    "extract_dir": "FSResizer43",
+    "url": "https://www.faststonesoft.net/DN/FSResizer45.zip",
+    "hash": "bc6de20d6424f7bd27c7e3d69861dacc24ecdc23effff982bcda262e66f2a9f7",
+    "extract_dir": "FSResizer45",
     "pre_install": "if (!(Test-Path \"$persist_dir\\FSResizerSettings.db\")) { New-Item \"$dir\\FSResizerSettings.db\" | Out-Null }",
     "bin": "FSResizer.exe",
     "shortcuts": [
@@ -20,7 +20,7 @@
     "persist": "FSResizerSettings.db",
     "checkver": "Version\\s+([\\d.]+)",
     "autoupdate": {
-        "url": "http://www.faststonesoft.net/DN/FSResizer$cleanVersion.zip",
+        "url": "https://www.faststonesoft.net/DN/FSResizer$cleanVersion.zip",
         "extract_dir": "FSResizer$cleanVersion"
     }
 }

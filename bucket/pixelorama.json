@@ -1,16 +1,18 @@
 {
-    "version": "0.9",
+    "version": "1.2.4",
     "description": "2D sprite editor designed for pixel art",
     "homepage": "https://orama-interactive.itch.io/pixelorama",
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/Orama-Interactive/Pixelorama/releases/download/v0.9/Pixelorama.Windows-64bit.zip",
-            "hash": "78aef3ea370e029dba06dc3a6e47b74b819967039ec8f2c0eeff125641a389a9"
+            "url": "https://github.com/Orama-Interactive/Pixelorama/releases/download/v1.2.4/Pixelorama-Windows-64bit.zip",
+            "hash": "8ce63c264338b88fd36527f8edb3b7f6bba614d92451efc406ef7ce45b41da85",
+            "extract_dir": "Pixelorama-Windows-64bit"
         },
         "32bit": {
-            "url": "https://github.com/Orama-Interactive/Pixelorama/releases/download/v0.9/Pixelorama.Windows-32bit.zip",
-            "hash": "87678ed1ec8d12e69b96deb32832b19b1f4b18683ba6e519b41e24562befd802"
+            "url": "https://github.com/Orama-Interactive/Pixelorama/releases/download/v1.2.4/Pixelorama-Windows-32bit.zip",
+            "hash": "1a771a222515a71804837b586de05469c8ad40866c563e99f152bd0bdc036c47",
+            "extract_dir": "Pixelorama-Windows-32bit"
         }
     },
     "bin": "Pixelorama.exe",
@@ -26,10 +28,10 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/Orama-Interactive/Pixelorama/releases/download/v$version/Pixelorama.Windows-64bit.zip"
+                "url": "https://github.com/Orama-Interactive/Pixelorama/releases/download/v$version/Pixelorama-Windows-64bit.zip"
             },
             "32bit": {
-                "url": "https://github.com/Orama-Interactive/Pixelorama/releases/download/v$version/Pixelorama.Windows-32bit.zip"
+                "url": "https://github.com/Orama-Interactive/Pixelorama/releases/download/v$version/Pixelorama-Windows-32bit.zip"
             }
         }
     }

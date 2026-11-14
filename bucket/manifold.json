@@ -1,44 +1,31 @@
 {
-    "version": "9.0.175",
+    "version": "9.0.182.6",
     "description": "Parallel GIS, ETL, data science and DBMS tool",
-    "homepage": "http://manifold.net/",
+    "homepage": "https://manifold.net/",
     "license": "Proprietary",
     "suggest": {
-        "Microsoft Visual C++ Redistributable 2017": "extras/vcredist2017"
+        "vcredist": "extras/vcredist2022"
     },
-    "url": "http://www.manifoldgis.com/updates/working/manifold-9.0.175-x64.zip",
-    "hash": "d5fdf31fe309a81fd8549f6bf882a93b5a91acec0b150d0c13da1c71268186ed",
-    "extract_dir": "manifold-9.0.175-x64",
+    "url": "https://manifold.net/updates/manifold-9.0.182.6.zip",
+    "hash": "4567e16128782734e4025a02266fc786725eb9710cd76e0bfa440de11b090aee",
+    "extract_dir": "manifold-9.0.182.6",
     "architecture": {
         "64bit": {
-            "bin": "bin64\\manifold.exe",
+            "bin": "manifold.exe",
             "shortcuts": [
                 [
-                    "bin64\\manifold.exe",
-                    "Manifold 9"
-                ]
-            ]
-        },
-        "32bit": {
-            "bin": "bin\\manifold.exe",
-            "shortcuts": [
-                [
-                    "bin\\manifold.exe",
+                    "manifold.exe",
                     "Manifold 9"
                 ]
             ]
         }
     },
     "checkver": {
-        "url": "http://www.georeference.org/forum/",
-        "regex": "Manifold 9</b>:.+?([\\d.]+)</a>"
+        "url": "https://manifold.net/updates/download_9.shtml",
+        "regex": "https://manifold.net/updates/manifold-([\\d.]+).zip"
     },
     "autoupdate": {
-        "url": "http://www.manifoldgis.com/updates/working/manifold-$version-x64.zip",
-        "extract_dir": "manifold-$version-x64",
-        "hash": {
-            "url": "https://manifold.net/updates/download_9.shtml",
-            "regex": "$basename.*?$sha256"
-        }
+        "url": "https://manifold.net/updates/manifold-$version.zip",
+        "extract_dir": "manifold-$version"
     }
 }

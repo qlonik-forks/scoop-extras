@@ -1,18 +1,26 @@
 {
-    "version": "1.6.6",
+    "version": "1.9.2",
     "description": "Frametimes analysis tool compatible with OCAT",
     "homepage": "https://github.com/CXWorld/CapFrameX",
     "license": "MIT",
     "suggest": {
-        "OCAT": "ocat"
+        "OCAT": "extras/ocat"
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/CXWorld/CapFrameX/releases/download/v1.6.6/CapFrameX_v1.6.6_Portable.zip",
-            "hash": "f889bd33d52c05172f79d18579cc2249b3e1c750a6ec4daef735e840f637608b",
-            "extract_dir": "CapFrameX 1.6.6 Portable"
+            "url": "https://github.com/CXWorld/CapFrameX/releases/download/v1.9.2/release_1.9.2_portable.zip",
+            "hash": "0c3374d382abb359439f8898bdaaa1c4e6a7cc0fdd936022c0ead0ca213bda08"
         }
     },
+    "pre_install": [
+        "# The executable is sometimes nested within a subdirectory of the archive.",
+        "$topLevelItems = Get-ChildItem -Path $dir",
+        "if (($topLevelItems.Count -eq 1) -and ($topLevelItems[0].PSIsContainer)) {",
+        "    $subfolder = $topLevelItems[0].FullName",
+        "    Copy-Item -Path \"$subfolder\\*\" -Destination $dir -Recurse",
+        "    Remove-Item -Path $subfolder -Recurse -Force",
+        "}"
+    ],
     "bin": "CapFrameX.exe",
     "shortcuts": [
         [
@@ -20,12 +28,15 @@
             "CapFrameX"
         ]
     ],
-    "checkver": "github",
+    "checkver": {
+        "github": "https://api.github.com/repos/CXWorld/CapFrameX/releases",
+        "jsonpath": "$[?(@.tag_name =~ /^(?!.*beta).+$/)].tag_name",
+        "regex": "(?<tag>v(?<version>[\\d.]+)[^\"]*)"
+    },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/CXWorld/CapFrameX/releases/download/v$version/CapFrameX_v$version_Portable.zip",
-                "extract_dir": "CapFrameX $version Portable"
+                "url": "https://github.com/CXWorld/CapFrameX/releases/download/$matchTag/release_$version_portable.zip"
             }
         }
     }

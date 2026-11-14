@@ -1,5 +1,5 @@
 {
-    "version": "21.3.0",
+    "version": "26.2.4",
     "description": "Database tool for developers, SQL programmers, database administrators and analysts",
     "homepage": "https://dbeaver.io",
     "license": "Apache-2.0",
@@ -12,14 +12,18 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://download.dbeaver.com/community/21.3.0/dbeaver-ce-21.3.0-win32.win32.x86_64.zip",
-            "hash": "c05b5ecc2bdec028838c90e2b8c684dc35b6e74a2e4bc16b43cfe46e8f42540d"
+            "url": "https://dbeaver.io/files/26.2.4/dbeaver-ce-26.2.4-windows-x86_64.zip",
+            "hash": "e667f516d64f29b87e3571203fc3eb02f0a419b9ff66865043bf9954ebc230c6"
+        },
+        "arm64": {
+            "url": "https://dbeaver.io/files/26.2.4/dbeaver-ce-26.2.4-windows-aarch64.zip",
+            "hash": "15ac78b8533c4f83237c67cf458ac9966024c2c7e6a0f0aa281f62b4c8d62d75"
         }
     },
     "extract_dir": "dbeaver",
     "bin": [
         "dbeaver.exe",
-        "dbeaver-cli.exe"
+        "dbeaverc.exe"
     ],
     "shortcuts": [
         [
@@ -28,13 +32,15 @@
         ]
     ],
     "checkver": {
-        "url": "https://dbeaver.io/download/",
-        "regex": "Community Edition ([\\d.]+)"
+        "github": "https://github.com/dbeaver/dbeaver"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://download.dbeaver.com/community/$version/dbeaver-ce-$version-win32.win32.x86_64.zip"
+                "url": "https://dbeaver.io/files/$version/dbeaver-ce-$version-windows-x86_64.zip"
+            },
+            "arm64": {
+                "url": "https://dbeaver.io/files/$version/dbeaver-ce-$version-windows-aarch64.zip"
             }
         },
         "hash": {

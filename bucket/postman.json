@@ -1,5 +1,6 @@
 {
-    "version": "9.3.1",
+    "##": "Please keep .exe instead of the .nupkg. The Update.exe extracted from .exe is needed to convert the persistent data to the latest version (#10938).",
+    "version": "12.36.4",
     "description": "Complete API development environment.",
     "homepage": "https://www.getpostman.com/",
     "license": {
@@ -8,19 +9,23 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://dl.pstmn.io/download/9.3.1/Postman-win64-9.3.1-full.nupkg#/dl.7z",
-            "hash": "sha1:60afb87859ff9de1433ac6fc9d70c2ddab203a3f"
+            "url": "https://dl.pstmn.io/download/12.36.4/Postman%20v12.36.4%20(x64).exe#/dl.7z",
+            "hash": "sha1:fe0d7d82725b039c54950ec465c2052a656d70f3"
         },
-        "32bit": {
-            "url": "https://dl.pstmn.io/download/9.3.1/Postman-win32-9.3.1-full.nupkg#/dl.7z",
-            "hash": "sha1:70284e478c865968a0e999e38f135ec2b633af3e"
+        "arm64": {
+            "url": "https://dl.pstmn.io/download/12.36.4/Postman%20v12.36.4%20(arm64).exe#/dl.7z",
+            "hash": "sha1:c1ef7c11da967fce3e28dffa8ec31415f19665d5"
         }
     },
-    "extract_dir": "lib\\net45",
-    "bin": "Postman.exe",
+    "installer": {
+        "script": [
+            "Expand-7zipArchive \"$dir\\Postman-$version-full.nupkg\" \"$dir\\app\" -ExtractDir 'lib\\net45' -Removal",
+            "'background.gif', 'RELEASES', 'setupIcon.ico' | ForEach-Object { Remove-Item \"$dir\\$_\" }"
+        ]
+    },
     "shortcuts": [
         [
-            "Postman.exe",
+            "app/Postman.exe",
             "Postman"
         ]
     ],
@@ -31,17 +36,17 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://dl.pstmn.io/download/$version/Postman-win64-$version-full.nupkg#/dl.7z",
+                "url": "https://dl.pstmn.io/download/$version/Postman%20v$version%20(x64).exe#/dl.7z",
                 "hash": {
-                    "url": "https://dl.pstmn.io/RELEASES?platform=win64",
-                    "jsonpath": "$.releases[*].files[?(@.name=='$basename')].hash"
+                    "url": "https://dl.pstmn.io/RELEASES?platform=win64&from=$version",
+                    "regex": "(?sm)$basename.*?$sha1"
                 }
             },
-            "32bit": {
-                "url": "https://dl.pstmn.io/download/$version/Postman-win32-$version-full.nupkg#/dl.7z",
+            "arm64": {
+                "url": "https://dl.pstmn.io/download/$version/Postman%20v$version%20(arm64).exe#/dl.7z",
                 "hash": {
-                    "url": "https://dl.pstmn.io/RELEASES?platform=win32",
-                    "jsonpath": "$.releases[*].files[?(@.name=='$basename')].hash"
+                    "url": "https://dl.pstmn.io/RELEASES?platform=winarm64&from=$version",
+                    "regex": "(?sm)$basename.*?$sha1"
                 }
             }
         }

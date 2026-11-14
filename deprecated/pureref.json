@@ -1,5 +1,5 @@
 {
-    "version": "1.9.2",
+    "version": "1.11.1",
     "description": "Simple and lightweight tool for artists to organize and view reference images",
     "homepage": "https://www.pureref.com/",
     "license": {
@@ -7,16 +7,18 @@
         "url": "https://www.pureref.com/support.php"
     },
     "suggest": {
-        "Microsoft Visual C++ Redistributables 2015": "extras/vcredist2015"
+        "vcredist": "extras/vcredist2022"
     },
     "architecture": {
         "64bit": {
-            "url": "https://www.pureref.com/files/portable.php?build=WIN64#/PureRef.exe",
-            "hash": "deadb1491977dd02e4be49b0b049e1dfa5c90d09c485bdb96df63824d5c9b3bd"
+            "url": "https://raw.githubusercontent.com/ScoopInstaller/Binary/master/pureref/PureRef-1.11.1_x64.zip",
+            "hash": "ea2fa5b34a2beea883f1cf81e16f91bc7970f5ce98b55b9d9990810f096d69fb",
+            "extract_dir": "PureRef-1.11.1_x64"
         },
         "32bit": {
-            "url": "https://www.pureref.com/files/portable.php?build=WIN32#/PureRef.exe",
-            "hash": "09b26fe2f0dc7c0d336395838dc10b427656b3981319b86a13fa28855c0f43b0"
+            "url": "https://raw.githubusercontent.com/ScoopInstaller/Binary/master/pureref/PureRef-1.11.1_x86.zip",
+            "hash": "ac32eb97d2be9e436dc777c7d8b5bbc5524fdd29c9e5e5e8255678b06b92e10e",
+            "extract_dir": "PureRef-1.11.1_x86"
         }
     },
     "bin": "PureRef.exe",
@@ -26,14 +28,8 @@
             "PureRef"
         ]
     ],
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://www.pureref.com/files/portable.php?build=WIN64#/PureRef.exe"
-            },
-            "32bit": {
-                "url": "https://www.pureref.com/files/portable.php?build=WIN32#/PureRef.exe"
-            }
-        }
+    "checkver": {
+        "url": "https://www.pureref.com/changelog.php",
+        "regex": "<h2>Version ([\\d.]+)"
     }
 }

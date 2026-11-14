@@ -1,16 +1,18 @@
 {
-    "version": "0.17.2.3",
+    "version": "0.18.5.4",
     "description": "The secure, private, untraceable cryptocurrency",
     "homepage": "https://getmonero.org",
     "license": "BSD-3-Clause",
     "notes": "For 32bit, use 'monero-cli' instead.",
     "architecture": {
         "64bit": {
-            "url": "https://dlsrc.getmonero.org/gui/monero-gui-win-x64-v0.17.2.3.zip",
-            "hash": "1ae06f71e7b469ea95f10008f2624797cf0a3223e47f07c42591c0dff63e63ec"
+            "url": "https://dlsrc.getmonero.org/gui/monero-gui-win-x64-v0.18.5.4.zip",
+            "hash": "0b5cbbe0a1fda5ec487a667cea62599114dca3609acaab436b64a38fa84d449c"
         }
     },
-    "extract_dir": "monero-gui-v0.17.2.3",
+    "extract_dir": "monero-gui-v0.18.5.4",
+    "pre_install": "if (!(Test-Path \"$persist_dir$($p = '/monero-storage')\")) { New-Item -ItemType Directory \"$dir$p\" | Out-Null }",
+    "persist": "monero-storage",
     "bin": [
         "monerod.exe",
         "monero-wallet-gui.exe",

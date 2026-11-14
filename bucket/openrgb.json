@@ -1,20 +1,20 @@
 {
-    "version": "0.6",
+    "version": "1.1",
     "description": "RGB lighting control that does not depend on manufacturer software.",
     "homepage": "https://openrgb.org",
-    "license": "GPL-2.0-only",
+    "license": "GPL-2.0-or-later",
     "suggest": {
-        "vcredist2019": "vcredist2019"
+        "vcredist": "extras/vcredist2022"
     },
     "architecture": {
         "64bit": {
-            "url": "https://openrgb.org/releases/release_0.6/OpenRGB_0.6_Windows_64_405ff7f.zip",
-            "hash": "4334d1a3f3d9029066662104bcc34804e112e22ac36c648c20dac67392246c40",
+            "url": "https://codeberg.org/OpenRGB/OpenRGB/releases/download/release_1.1/OpenRGB_1.1_Windows_64_8e16de2.zip",
+            "hash": "63291726c6fc84eb479ef2ee752e97e1187f6ce9c49fd27eee40ded588a8172a",
             "extract_dir": "OpenRGB Windows 64-bit"
         },
         "32bit": {
-            "url": "https://openrgb.org/releases/release_0.6/OpenRGB_0.6_Windows_32_405ff7f.zip",
-            "hash": "e4b6834c9d23fcc36e7ce0413071801b5daad305e5cd546e91c51795be5824ee",
+            "url": "https://codeberg.org/OpenRGB/OpenRGB/releases/download/release_1.1/OpenRGB_1.1_Windows_32_8e16de2.zip",
+            "hash": "27b1e68e65107c4976c898a0214b752de576fdfc2f01c18559bdf05697e7c8bc",
             "extract_dir": "OpenRGB Windows 32-bit"
         }
     },
@@ -25,16 +25,17 @@
         ]
     ],
     "checkver": {
-        "url": "https://openrgb.org/releases.html",
-        "regex": "/OpenRGB_([\\d.]+)_Windows_\\d+_(?<commit>[\\da-fA-F]{7})\\.zip"
+        "url": "https://codeberg.org/api/v1/repos/OpenRGB/OpenRGB/releases/latest",
+        "jsonpath": "$.assets[*].browser_download_url",
+        "regex": "OpenRGB_([\\d.]+)_Windows_64_(?<commit>[a-fA-F0-9]+)\\.zip"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://openrgb.org/releases/release_$version/OpenRGB_$version_Windows_64_$matchCommit.zip"
+                "url": "https://codeberg.org/OpenRGB/OpenRGB/releases/download/release_$version/OpenRGB_$version_Windows_64_$matchCommit.zip"
             },
             "32bit": {
-                "url": "https://openrgb.org/releases/release_$version/OpenRGB_$version_Windows_32_$matchCommit.zip"
+                "url": "https://codeberg.org/OpenRGB/OpenRGB/releases/download/release_$version/OpenRGB_$version_Windows_32_$matchCommit.zip"
             }
         }
     }

@@ -1,16 +1,34 @@
 {
-    "version": "20210814-124438-54e29167",
+    "version": "20240203-110809-5046fc22",
     "description": "GPU-accelerated terminal emulator",
     "homepage": "https://github.com/wez/wezterm",
     "license": "Apache-2.0",
+    "notes": [
+        "Add Open with Wezterm as a context menu option by running:",
+        "reg import \"$dir\\install-context.reg\""
+    ],
     "architecture": {
         "64bit": {
-            "url": "https://github.com/wez/wezterm/releases/download/20210814-124438-54e29167/WezTerm-windows-20210814-124438-54e29167.zip",
-            "hash": "75242f12ea2d03ab8c1bcb1a8afdb872fb722c84be64b9a40dc41f3ed7d76492"
+            "url": "https://github.com/wez/wezterm/releases/download/20240203-110809-5046fc22/WezTerm-windows-20240203-110809-5046fc22.zip",
+            "hash": "57e5d03b585303d81e8b8e96d1230362852eb39aca92b3b29c7a42cfb82f9ac4"
         }
     },
-    "extract_dir": "WezTerm-windows-20210814-124438-54e29167",
-    "bin": "wezterm.exe",
+    "extract_dir": "WezTerm-windows-20240203-110809-5046fc22",
+    "post_install": [
+        "$weztermPath = \"$dir\\wezterm-gui.exe\".Replace('\\', '\\\\')",
+        "'install-context', 'uninstall-context' | ForEach-Object {",
+        "    if (Test-Path \"$bucketsdir\\extras\\scripts\\$app\\$_.reg\") {",
+        "        $content = Get-Content \"$bucketsdir\\extras\\scripts\\$app\\$_.reg\"",
+        "        $content = $content.Replace('$weztermPath', $weztermPath)",
+        "        if ($global) { $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE') }",
+        "        Set-Content \"$dir\\$_.reg\" $content -Encoding Ascii -Force",
+        "    }",
+        "}"
+    ],
+    "bin": [
+        "wezterm.exe",
+        "wezterm-gui.exe"
+    ],
     "shortcuts": [
         [
             "wezterm-gui.exe",
@@ -27,6 +45,9 @@
                 "url": "https://github.com/wez/wezterm/releases/download/$version/WezTerm-windows-$version.zip"
             }
         },
-        "extract_dir": "WezTerm-windows-$version"
+        "extract_dir": "WezTerm-windows-$version",
+        "hash": {
+            "url": "$url.sha256"
+        }
     }
 }

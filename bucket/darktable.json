@@ -1,17 +1,19 @@
 {
-    "version": "3.6.1",
+    "version": "5.6.2",
     "description": "Photography workflow application and raw developer. A virtual lighttable and darkroom for photographers.",
     "homepage": "https://www.darktable.org",
     "license": "GPL-3.0-only",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/darktable-org/darktable/releases/download/release-3.6.1/darktable-3.6.1-win64.exe",
-            "hash": "34b4c1748ffe7ac66c3c79ad474b86a7aaa01ba296f8cd21929fe8024ebf3262"
+            "url": "https://github.com/darktable-org/darktable/releases/download/release-5.6.2/darktable-5.6.2-win64.exe",
+            "hash": "7f7a1eabcd0a1b548dcfacac842c8203fc85a4175697fb09f90bb891c8931edd"
+        },
+        "arm64": {
+            "url": "https://github.com/darktable-org/darktable/releases/download/release-5.6.2/darktable-5.6.2-woa64.exe",
+            "hash": "bcb700de8275f894c29ae4ccb5f600412b269bef1a581eecce9bbed697421fcc"
         }
     },
-    "installer": {
-        "script": "$Env:__COMPAT_LAYER='RunAsInvoker'; Invoke-Expression \"$dir\\$fname /S /D=$dir | Out-Null \" "
-    },
+    "innosetup": true,
     "bin": "bin\\darktable.exe",
     "shortcuts": [
         [
@@ -21,16 +23,20 @@
     ],
     "checkver": {
         "github": "https://github.com/darktable-org/darktable",
-        "regex": "/darktable-([\\d.]+)-win64"
+        "jsonpath": "$.assets[?(@.name =~ /win64/i)].browser_download_url",
+        "regex": "(?i)download/(?<tag>[^/]+)/darktable-([\\d.]+)-win64"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/darktable-org/darktable/releases/download/release-$matchHead/darktable-$version-win64.exe",
-                "hash": {
-                    "url": "https://github.com/darktable-org/darktable/releases/tag/release-$matchHead"
-                }
+                "url": "https://github.com/darktable-org/darktable/releases/download/release-$matchHead/darktable-$version-win64.exe"
+            },
+            "arm64": {
+                "url": "https://github.com/darktable-org/darktable/releases/download/release-$matchHead/darktable-$version-woa64.exe"
             }
+        },
+        "hash": {
+            "url": "https://github.com/darktable-org/darktable/releases/tag/release-$matchHead"
         }
     }
 }

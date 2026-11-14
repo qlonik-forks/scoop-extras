@@ -1,15 +1,18 @@
 {
-    "version": "0.19.2",
+    "version": "1.1.4",
     "description": "A free and open-source multi-platform parametric 3D modeler.",
-    "homepage": "https://www.freecadweb.org",
-    "license": "LGPL-2.0-or-later",
+    "homepage": "https://www.freecad.org",
+    "license": {
+        "identifier": "LGPL-2.1-or-later",
+        "url": "https://github.com/FreeCAD/FreeCAD/blob/HEAD/LICENSE"
+    },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/FreeCAD/FreeCAD/releases/download/0.19.2/FreeCAD-0.19.2.7b5e18a-WIN-x64-portable1.7z",
-            "hash": "82679987ed1c56f13127085c4829f95b83d8505090fcde90c4f3cea9b7cb2176"
+            "url": "https://github.com/FreeCAD/FreeCAD/releases/download/1.1.4/FreeCAD_1.1.4-Windows-x86_64-py311.7z",
+            "hash": "4828741fc91ee37fafcdb97a1abacb18b04ba451ac4372d9ff7a7349b36f4d6d"
         }
     },
-    "extract_dir": "FreeCAD-0.19.2.7b5e18a-WIN-x64-portable1",
+    "pre_install": "pushd $dir ; mv */* . ; rm FreeCAD_* ; popd",
     "bin": "bin\\FreeCADCmd.exe",
     "shortcuts": [
         [
@@ -18,19 +21,19 @@
         ]
     ],
     "checkver": {
-        "github": "https://github.com/FreeCAD/FreeCAD",
-        "regex": "releases/download/([\\d.]+)/FreeCAD-(?<build>[\\w.]+)-WIN"
+        "github": "https://api.github.com/repos/FreeCAD/FreeCAD/releases/latest",
+        "jsonpath": "$.assets[?(@.name =~ /Win.+\\.7z$/i)].browser_download_url",
+        "regex": "(?i)download/(?<tag>[^/]+)/(?<name>FreeCAD[^\\d]([0-9a-f.-]+)(?:-conda)?-Win.+)"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/FreeCAD/FreeCAD/releases/download/$version/FreeCAD-$matchBuild-WIN-x64-portable1.7z"
+                "url": "https://github.com/FreeCAD/FreeCAD/releases/download/$matchTag/$matchName"
             }
         },
         "hash": {
             "url": "$url-SHA256.txt",
-            "regex": "(?sm):\\s+([a-fA-F\\d\\s]+)CertUtil"
-        },
-        "extract_dir": "FreeCAD-$matchBuild-WIN-x64-portable1"
+            "regex": "(?s)$basename.*?$sha256"
+        }
     }
 }

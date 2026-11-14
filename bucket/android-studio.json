@@ -1,21 +1,18 @@
 {
-    "version": "2020.3.1.25",
+    "version": "2026.2.2.9",
     "description": "The official IDE for Android development, which includes everything you need to build Android apps.",
-    "homepage": "https://developer.android.com/studio/",
+    "homepage": "https://developer.android.com/studio",
     "license": {
         "identifier": "Freeware",
-        "url": "https://developer.android.com/studio/terms.html"
+        "url": "https://developer.android.com/studio/terms"
     },
     "suggest": {
-        "SDK": [
-            "android-clt",
-            "android-sdk"
-        ]
+        "Android SDK": "main/android-clt"
     },
     "architecture": {
         "64bit": {
-            "url": "https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2020.3.1.25/android-studio-2020.3.1.25-windows.zip",
-            "hash": "37ba6592e8f11efe96a4a48ae82847452ca7d42d4eba3e5690f63eeb896734d1",
+            "url": "https://edgedl.me.gvt1.com/android/studio/ide-zips/2026.2.2.9/android-studio-rabbit2-patch1-windows.zip",
+            "hash": "6813b0ce669844b87c5d56b9c5f661362bd3bebff55327415496bd7457a7b917",
             "shortcuts": [
                 [
                     "bin\\studio64.exe",
@@ -25,11 +22,15 @@
         }
     },
     "extract_dir": "android-studio",
-    "checkver": "android-studio-([\\d.]+)-windows\\.zip",
+    "checkver": "/ide-zips/(?<version>[\\d.]+)/(?<filename>android-studio.*windows\\.zip)",
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://redirector.gvt1.com/edgedl/android/studio/ide-zips/$version/android-studio-$version-windows.zip"
+                "url": "https://edgedl.me.gvt1.com/android/studio/ide-zips/$version/$matchFilename",
+                "hash": {
+                    "url": "https://developer.android.com/studio",
+                    "regex": "(?sm)$basename.*?$sha256"
+                }
             }
         }
     }

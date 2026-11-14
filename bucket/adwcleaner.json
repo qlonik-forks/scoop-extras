@@ -1,5 +1,5 @@
 {
-    "version": "8.3.1",
+    "version": "8.8.1",
     "description": "Free Adware Cleaner & Removal tool",
     "homepage": "https://www.malwarebytes.com/adwcleaner",
     "license": {
@@ -8,10 +8,11 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://download.toolslib.net/download/direct/1/latest?channel=release#/adwcleaner.exe",
-            "hash": "9607332eba1668b5223b4112d9120a220bdb60e1a01f79c106168c7c9de73841"
+            "url": "https://adwcleaner.malwarebytes.com/adwcleaner?channel=release",
+            "hash": "7108ed065682eaa24b007c54fd994648c868bfe86a0a61648319e9707da73965"
         }
     },
+    "pre_install": "Rename-Item \"$dir\\$fname\" 'adwcleaner.exe'",
     "bin": "adwcleaner.exe",
     "shortcuts": [
         [
@@ -20,14 +21,18 @@
         ]
     ],
     "checkver": {
-        "url": "https://support.malwarebytes.com/hc/en-us/sections/360005837474-Release-History-News",
-        "regex": "Malwarebytes AdwCleaner (\\d[.\\d]+)"
+        "url": "https://toolslib.net/downloads/viewdownload/1-adwcleaner/files/?t=release",
+        "regex": "/(?<release>\\d+)/\">AdwCleaner</a>\\s*</td>\\s*<td class=\"text-center\">([\\d.]+)</td>"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://download.toolslib.net/download/direct/1/latest?channel=release#/adwcleaner.exe"
+                "url": "https://adwcleaner.malwarebytes.com/adwcleaner?channel=release"
             }
+        },
+        "hash": {
+            "url": "https://toolslib.net/downloads/viewdownload/1-adwcleaner/files/$matchRelease",
+            "regex": "$sha256"
         }
     }
 }

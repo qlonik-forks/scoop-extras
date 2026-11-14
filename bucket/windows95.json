@@ -1,5 +1,5 @@
 {
-    "version": "2.3.0",
+    "version": "5.0.1",
     "description": "Windows 95 emulator",
     "homepage": "https://github.com/felixrieseberg/windows95",
     "license": {
@@ -8,12 +8,12 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/felixrieseberg/windows95/releases/download/v2.3.0/windows95-win32-x64-2.3.0.zip",
-            "hash": "e0fa2cdc635d770c03a78a9d1b650bce285f4ecb4720ee3fa23004e1727299cf"
+            "url": "https://github.com/felixrieseberg/windows95/releases/download/v5.0.1/windows95-win32-x64-5.0.1.zip",
+            "hash": "319c5a05561fe2f020540d37152be765acfc2cdcfe332b46fce7a3285956338c"
         },
         "32bit": {
-            "url": "https://github.com/felixrieseberg/windows95/releases/download/v2.3.0/windows95-win32-ia32-2.3.0.zip",
-            "hash": "cd373ea7c2adf7182fd9f780fbaac6cdd3203fef66e3a45d45b35c8b0e0ac6c2"
+            "url": "https://github.com/felixrieseberg/windows95/releases/download/v5.0.1/windows95-win32-ia32-5.0.1.zip",
+            "hash": "9f3018e421f0792b83fcbf144203d0dff67e3157343146e64356e64f8676df4d"
         }
     },
     "shortcuts": [

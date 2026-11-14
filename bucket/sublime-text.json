@@ -1,51 +1,35 @@
 {
-    "version": "4-4121",
+    "version": "4-4215",
     "description": "A sophisticated text editor for code, markup and prose",
     "homepage": "https://www.sublimetext.com",
     "license": {
         "identifier": "Shareware",
         "url": "https://www.sublimetext.com/eula"
     },
-    "notes": "Add Sublime Text as a context menu option by running: \"reg import '$dir\\install-context.reg'\"",
+    "notes": [
+        "Add Sublime Text as a context menu option by running:",
+        "reg import \"$dir\\install-context.reg\""
+    ],
     "architecture": {
         "64bit": {
-            "url": [
-                "https://download.sublimetext.com/sublime_text_build_4121_x64.zip",
-                "https://raw.githubusercontent.com/lukesampson/scoop-extras/master/scripts/sublime-text/install-context.reg",
-                "https://raw.githubusercontent.com/lukesampson/scoop-extras/master/scripts/sublime-text/uninstall-context.reg"
-            ],
-            "hash": [
-                "d825e533606e1162644046b003cb9697b5f502a41c366c907bb993688318b7db",
-                "45914fc3b299e90d9e3c5c84a4c3747c942918462e8b18348ec43383b87ed810",
-                "0253faa4f5e35be203aefa838594965e43aa97129e305d1b8ee1811098e0ae85"
-            ]
-        },
-        "32bit": {
-            "url": [
-                "https://download.sublimetext.com/sublime_text_build_4121.zip",
-                "https://raw.githubusercontent.com/lukesampson/scoop-extras/master/scripts/sublime-text/install-context.reg",
-                "https://raw.githubusercontent.com/lukesampson/scoop-extras/master/scripts/sublime-text/uninstall-context.reg"
-            ],
-            "hash": [
-                "5fdc213c3c701e2754574be3aa5688b292c64b89342e111b079f1a669ce49554",
-                "45914fc3b299e90d9e3c5c84a4c3747c942918462e8b18348ec43383b87ed810",
-                "0253faa4f5e35be203aefa838594965e43aa97129e305d1b8ee1811098e0ae85"
-            ]
+            "url": "https://download.sublimetext.com/sublime_text_build_4215_x64.zip",
+            "hash": "14f9d6190d5d118bd61a7067a6b00e27e6a82f5f42a94e675792ec7734e09aca"
         }
     },
     "post_install": [
-        "$file = \"$dir\\install-context.reg\"",
-        "if (Test-Path $file) {",
-        "    $sublimepath = \"$dir\\sublime_text.exe\".Replace('\\', '\\\\')",
-        "    $content = (Get-Content $file).Replace('$sublime', $sublimepath)",
-        "    if ($global) { $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE') }",
-        "    Set-Content $file $content -Encoding Ascii -Force",
-        "}",
-        "$file = \"$dir\\uninstall-context.reg\"",
-        "if ((Test-Path $file) -and $global) {",
-        "    (Get-Content $file).Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE') | Set-Content -Path $file -Encoding Ascii -Force",
+        "$sublimepath = \"$dir\\sublime_text.exe\".Replace('\\', '\\\\')",
+        "'install-context.reg', 'uninstall-context.reg' | ForEach-Object {",
+        "    if (Test-Path \"$bucketsdir\\$bucket\\scripts\\$app\\$_\") {",
+        "        $content = Get-Content \"$bucketsdir\\$bucket\\scripts\\$app\\$_\"",
+        "        $content = $content.Replace('$sublime', $sublimepath)",
+        "        if ($global) {",
+        "            $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
+        "        }",
+        "    }",
+        "    $content | Set-Content -Path \"$dir\\$_\" -Encoding ascii",
         "}"
     ],
+    "pre_uninstall": "if ($cmd -eq 'uninstall') { reg import \"$dir\\uninstall-context.reg\" }",
     "bin": "subl.exe",
     "shortcuts": [
         [
@@ -64,9 +48,6 @@
         "architecture": {
             "64bit": {
                 "url": "https://download.sublimetext.com/sublime_text_build_$preReleaseVersion_x64.zip"
-            },
-            "32bit": {
-                "url": "https://download.sublimetext.com/sublime_text_build_$preReleaseVersion.zip"
             }
         }
     }

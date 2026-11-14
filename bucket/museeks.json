@@ -1,25 +1,19 @@
 {
-    "version": "0.12.0",
+    "version": "0.23.4",
     "description": "A simple and clean music player",
     "homepage": "https://museeks.io",
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/martpie/museeks/releases/download/0.12.0/museeks-x64-setup.exe#/dl.7z",
-            "hash": "6b4cc3baed020b0098eee3ea284bdb4d90991f61d7c60983c1de155b945b6f8d",
-            "pre_install": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\""
-        },
-        "32bit": {
-            "url": "https://github.com/martpie/museeks/releases/download/0.12.0/museeks-ia32-setup.exe#/dl.7z",
-            "hash": "98f15076c01fdbd3cf8ae3c93e474bb22577c09125c2b2b88c86b469a3d59652",
-            "pre_install": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\""
+            "url": "https://github.com/martpie/museeks/releases/download/0.23.4/Museeks_0.23.4_x64-setup.exe#/dl.7z",
+            "hash": "66d45b21f309cca2646689d06656dec1c9115a0b31da7c3a078aa6bdcabc327c"
         }
     },
     "post_install": "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*.exe\" -Recurse",
-    "bin": "Museeks.exe",
+    "bin": "museeks.exe",
     "shortcuts": [
         [
-            "Museeks.exe",
+            "museeks.exe",
             "Museeks"
         ]
     ],
@@ -29,10 +23,7 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/martpie/museeks/releases/download/$version/museeks-x64-setup.exe#/dl.7z"
-            },
-            "32bit": {
-                "url": "https://github.com/martpie/museeks/releases/download/$version/museeks-ia32-setup.exe#/dl.7z"
+                "url": "https://github.com/martpie/museeks/releases/download/$version/Museeks_$version_x64-setup.exe#/dl.7z"
             }
         },
         "hash": {

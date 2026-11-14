@@ -1,26 +1,21 @@
 {
-    "version": "15.8.7",
+    "version": "32.6.10",
     "description": "Professional diagramming",
-    "homepage": "https://www.draw.io",
-    "license": "Apache-2.0",
+    "homepage": "https://www.drawio.com/",
+    "license": "GPL-3.0-only",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/jgraph/drawio-desktop/releases/download/v15.8.7/draw.io-x64-15.8.7.exe#/dl.7z",
-            "hash": "01abbf2648cc36f02aeaf9817d6340f972b7ba8b22e078c9ff5950c6e4bc5da7",
-            "pre_install": [
-                "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
-                "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Recurse"
-            ]
+            "url": "https://github.com/jgraph/drawio-desktop/releases/download/v32.6.10/draw.io-32.6.10-windows-installer.exe#/dl.7z",
+            "hash": "e7ea99906304507ed0e2c14193f9aba578c47df38e93a5fe748b52a8b85aa88f",
+            "pre_install": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\""
         },
-        "32bit": {
-            "url": "https://github.com/jgraph/drawio-desktop/releases/download/v15.8.7/draw.io-ia32-15.8.7.exe#/dl.7z",
-            "hash": "8009c2d3fbe7450748b0cdfa91def06a19a9f881cac3cc67b2def586f1b88e6e",
-            "pre_install": [
-                "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-32.7z\" \"$dir\"",
-                "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Recurse"
-            ]
+        "arm64": {
+            "url": "https://github.com/jgraph/drawio-desktop/releases/download/v32.6.10/draw.io-arm64-32.6.10-windows-arm64-installer.exe#/dl.7z",
+            "hash": "03cb68788c668ef6b93d4cdeef7099987fde50607067e2846f6fcd7f62dc3d70",
+            "pre_install": "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-arm64.7z\" \"$dir\""
         }
     },
+    "post_install": "Remove-Item \"$dir\\`$*\", \"$dir\\Uninstall*\" -Force -Recurse",
     "bin": "draw.io.exe",
     "shortcuts": [
         [
@@ -34,10 +29,10 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/jgraph/drawio-desktop/releases/download/v$version/draw.io-x64-$version.exe#/dl.7z"
+                "url": "https://github.com/jgraph/drawio-desktop/releases/download/v$version/draw.io-$version-windows-installer.exe#/dl.7z"
             },
-            "32bit": {
-                "url": "https://github.com/jgraph/drawio-desktop/releases/download/v$version/draw.io-ia32-$version.exe#/dl.7z"
+            "arm64": {
+                "url": "https://github.com/jgraph/drawio-desktop/releases/download/v$version/draw.io-arm64-$version-windows-arm64-installer.exe#/dl.7z"
             }
         }
     }

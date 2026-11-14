@@ -1,22 +1,18 @@
 {
-    "version": "10.0.13",
+    "version": "11.0.29",
     "description": "Implementation of the Java Servlet, JavaServer Pages, Java Expression Language and Java WebSocket technologies",
     "homepage": "https://tomcat.apache.org",
     "license": "Apache-2.0",
     "suggest": {
-        "JRE": "java/openjdk"
+        "JDK": "java/openjdk"
     },
     "architecture": {
         "64bit": {
-            "url": "https://www.apache.org/dist/tomcat/tomcat-10/v10.0.13/bin/apache-tomcat-10.0.13-windows-x64.zip",
-            "hash": "sha512:e10abcd901239a99ca28817dc1b8b22ab1a5f82b99147bb3c875d49ad55f5045e2daed5ab8ec77aa360600e7f81f245686c5ae1652f048560b6d3cefb5bdb369"
-        },
-        "32bit": {
-            "url": "https://www.apache.org/dist/tomcat/tomcat-10/v10.0.13/bin/apache-tomcat-10.0.13-windows-x86.zip",
-            "hash": "sha512:d2afbd7289acd8bf22a05c3377b23c8b9740f25300c88dd88370a425984d912b7ea6034da010c6b8e77a250aa3d343c9924201bf5f06eea504232c5857119a0a"
+            "url": "https://archive.apache.org/dist/tomcat/tomcat-11/v11.0.29/bin/apache-tomcat-11.0.29-windows-x64.zip",
+            "hash": "sha512:8df8d90f4b8cd3e7e5c0c548fab93f99d6acce1ffd57e68ea5fa4840a02da91cb2970ca3d4c30f6c0253aaceb59dde6b85c3ba358478c67201867907ae37d73b"
         }
     },
-    "extract_dir": "apache-tomcat-10.0.13",
+    "extract_dir": "apache-tomcat-11.0.29",
     "bin": "bin\\catalina.bat",
     "env_set": {
         "CATALINA_HOME": "$dir",
@@ -27,16 +23,13 @@
         "webapps"
     ],
     "checkver": {
-        "url": "https://www.apache.org/dist/tomcat/tomcat-10/?C=M;O=D",
+        "url": "https://archive.apache.org/dist/tomcat/tomcat-11/?C=M;O=D",
         "regex": "v([\\d.]+)/"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://www.apache.org/dist/tomcat/tomcat-$majorVersion/v$version/bin/apache-tomcat-$version-windows-x64.zip"
-            },
-            "32bit": {
-                "url": "https://www.apache.org/dist/tomcat/tomcat-$majorVersion/v$version/bin/apache-tomcat-$version-windows-x86.zip"
+                "url": "https://archive.apache.org/dist/tomcat/tomcat-$majorVersion/v$version/bin/apache-tomcat-$version-windows-x64.zip"
             }
         },
         "hash": {

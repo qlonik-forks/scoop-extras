@@ -1,0 +1,39 @@
+{
+    "version": "5.1.0",
+    "description": "Free, open-source Markdown editor with live preview, math, diagrams and export.",
+    "homepage": "https://solomd.app",
+    "license": "MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/zhitongblog/solomd/releases/download/v5.1.0/SoloMD_5.1.0_x64-portable.zip",
+            "hash": "991bfb1cf64ce0d15136e638aaabddf71bbeba2f4f5269406040ddc6096cc815"
+        },
+        "arm64": {
+            "url": "https://github.com/zhitongblog/solomd/releases/download/v5.1.0/SoloMD_5.1.0_arm64-portable.zip",
+            "hash": "3ca4bb325101900efb52e8f4c42801ba090a088d5f6399ddb4f7b7641c167ead"
+        }
+    },
+    "bin": "solomd-mcp.exe",
+    "shortcuts": [
+        [
+            "SoloMD.exe",
+            "SoloMD"
+        ]
+    ],
+    "checkver": {
+        "github": "https://github.com/zhitongblog/solomd"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/zhitongblog/solomd/releases/download/v$version/SoloMD_$version_x64-portable.zip"
+            },
+            "arm64": {
+                "url": "https://github.com/zhitongblog/solomd/releases/download/v$version/SoloMD_$version_arm64-portable.zip"
+            }
+        },
+        "hash": {
+            "url": "$baseurl/SHA256SUMS.txt"
+        }
+    }
+}

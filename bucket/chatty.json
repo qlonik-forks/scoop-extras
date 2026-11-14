@@ -1,10 +1,10 @@
 {
-    "version": "0.15",
+    "version": "0.28",
     "description": "Twitch Chat Client",
     "homepage": "https://chatty.github.io",
     "license": "GPL-3.0-or-later",
-    "url": "https://github.com/chatty/chatty/releases/download/v0.15/Chatty_0.15_win_standalone.zip",
-    "hash": "6df7183b31a4fab2374cf6b2579e6f3c9b873a16f0aa5647aaeb31d857300026",
+    "url": "https://github.com/chatty/chatty/releases/download/v0.28/Chatty_0.28_win_standalone.zip",
+    "hash": "bc953f6654471bb7d9936ba2004f4be9722c4606f8433c266b51002e3b756422",
     "pre_install": [
         "if (!(Test-Path \"$persist_dir\\app\\Chatty.cfg\")) {",
         "    ensure \"$dir\\app\\portable_settings\" | Out-Null",

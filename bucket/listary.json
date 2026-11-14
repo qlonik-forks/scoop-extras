@@ -1,12 +1,11 @@
 {
-    "version": "5.00.2843",
+    "version": "6.3.5.94",
     "description": "A revolutionary search utility.",
     "homepage": "https://www.listary.com",
     "license": "Shareware",
-    "url": "https://www.listary.com/download/ListaryPortable.zip?version=5.00.2843#/ListaryPortable.zip",
-    "hash": "52c82c32fd719e782fd66c0a87f08ba073a93edc06fce60c64219ea0530b5682",
-    "extract_dir": "ListaryPortable",
-    "persist": "UserData",
+    "url": "https://www.listary.com/download/Listary.exe?version=6.3.5.94#/dl.exe",
+    "hash": "c62249e0d4d49bd3f062d55635cf6a3ab089ea8ee7f6c03947f6febfafaa0288",
+    "innosetup": true,
     "shortcuts": [
         [
             "Listary.exe",
@@ -14,10 +13,10 @@
         ]
     ],
     "checkver": {
-        "url": "https://www.listary.com/download",
-        "regex": "v([\\d.]+)"
+        "url": "https://dl.listary.com/auto_update_v2.xml",
+        "regex": "(?i)<version>\\s*(\\d+(?:\\.\\d+)+)\\s*</version>"
     },
     "autoupdate": {
-        "url": "https://www.listary.com/download/ListaryPortable.zip?version=$version#/ListaryPortable.zip"
+        "url": "https://www.listary.com/download/Listary.exe?version=$version#/dl.exe"
     }
 }

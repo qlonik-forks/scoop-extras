@@ -1,51 +1,52 @@
 {
-    "version": "8.1.9.2",
+    "version": "8.9.9.1",
     "description": "A free source code editor and Notepad replacement that supports several languages.",
     "homepage": "https://notepad-plus-plus.org",
-    "license": "GPL-2.0-only",
+    "license": "GPL-3.0-or-later",
     "notes": "Add Notepad++ as a context menu option by running: reg import \"$dir\\install-context.reg\"",
     "architecture": {
         "64bit": {
-            "url": [
-                "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.1.9.2/npp.8.1.9.2.portable.x64.zip",
-                "https://raw.githubusercontent.com/ScoopInstaller/Extras/master/scripts/notepadplusplus/install-context.reg",
-                "https://raw.githubusercontent.com/ScoopInstaller/Extras/master/scripts/notepadplusplus/uninstall-context.reg"
-            ],
-            "hash": [
-                "56167f3d71cb71b4b1f6859c557614d84eda158a0a1ccd5ac9217abb9c530975",
-                "2957865501223f2167a7da51196157a1138c8ad09819ad536beef5b97b19cf13",
-                "601a517c9be3b341e46692035130d094ed1613f55e78cb61d86dff774947d0e0"
-            ]
+            "url": "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.9.9.1/npp.8.9.9.1.portable.x64.zip",
+            "hash": "cbcefa34677e10fe6dd19802f7d6b3b9860cd6de62afeaae7680e09c51b47779"
         },
         "32bit": {
-            "url": [
-                "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.1.9.2/npp.8.1.9.2.portable.zip",
-                "https://raw.githubusercontent.com/ScoopInstaller/Extras/master/scripts/notepadplusplus/install-context.reg",
-                "https://raw.githubusercontent.com/ScoopInstaller/Extras/master/scripts/notepadplusplus/uninstall-context.reg"
-            ],
-            "hash": [
-                "d84c071dfbcc136166ae9e0b4545c3d975e07db2b9b6a5f2b481475dbb8e4532",
-                "2957865501223f2167a7da51196157a1138c8ad09819ad536beef5b97b19cf13",
-                "601a517c9be3b341e46692035130d094ed1613f55e78cb61d86dff774947d0e0"
-            ]
+            "url": "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.9.9.1/npp.8.9.9.1.portable.zip",
+            "hash": "7b48fceec762e80c2bc781a59739403f7af8b6136ed0ffc369a2680c535ab78a"
+        },
+        "arm64": {
+            "url": "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.9.9.1/npp.8.9.9.1.portable.arm64.zip",
+            "hash": "de0c5d1f15ccbdeac05421e1c282cb3d7e2da97bac674efa576d8ace04a5f20b"
         }
     },
     "pre_install": [
-        "if (!(Test-Path \"$persist_dir\\session.xml\")) { New-Item \"$dir\\session.xml\" -Force | Out-Null }",
-        "if (!(Test-Path \"$persist_dir\\userDefineLang.xml\")) { New-Item \"$dir\\userDefineLang.xml\" -Force | Out-Null }",
-        "if (!(Test-Path \"$persist_dir\\nativeLang.xml\")) { New-Item \"$dir\\nativeLang.xml\" -Force | Out-Null }",
-        "$file = \"$dir\\install-context.reg\"",
-        "if (Test-Path $file) {",
-        "    $nppPath = \"$dir\\notepad++.exe\".Replace('\\', '\\\\')",
-        "    $content = (Get-Content $file).Replace('$npp', $nppPath)",
-        "    if ($global) { $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE') }",
-        "    Set-Content $file $content -Encoding Ascii -Force",
+        "'config.xml', 'nativeLang.xml', 'session.xml', 'shortcuts.xml', 'userDefineLang.xml' | ForEach-Object {",
+        "    # If present from previous installs, removing incorrectly created folders from the persist dir",
+        "    if ((Test-Path -Path \"$persist_dir\\$_\" -PathType Container)) { Remove-Item \"$persist_dir\\$_\" -Recurse -Force }",
+        "    if (!(Test-Path \"$persist_dir\\$_\")) { New-Item \"$dir\\$_\" -ItemType File | Out-Null }",
         "}",
-        "$file = \"$dir\\uninstall-context.reg\"",
-        "if ((Test-Path $file) -and $global) {",
-        "    (Get-Content $file).Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE') | Set-Content -Path $file -Encoding Ascii -Force",
+        "if (!(Test-Path \"$persist_dir\\stylers.xml\")) { Copy-Item \"$dir\\stylers.model.xml\" \"$dir\\stylers.xml\" }"
+    ],
+    "post_install": [
+        "'install-context', 'uninstall-context' | ForEach-Object {",
+        "    if (Test-Path \"$bucketsdir\\extras\\scripts\\notepadplusplus\\$_.reg\") {",
+        "        $nppPath = \"$dir\\notepad++.exe\".Replace('\\', '\\\\')",
+        "        $content = (Get-Content \"$bucketsdir\\extras\\scripts\\notepadplusplus\\$_.reg\").Replace('$npp', $nppPath)",
+        "        if ($global) { $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE') }",
+        "        Set-Content \"$dir\\$_.reg\" $content -Encoding Ascii -Force",
+        "    }",
+        "}",
+        "# Update shipped plugins",
+        "if (Test-Path \"$dir\\plugins.original\") {",
+        "    Copy-Item -Recurse \"$dir\\plugins.original\\*\" \"$dir\\plugins\\\" -Force",
         "}"
     ],
+    "uninstaller": {
+        "script": [
+            "if ($cmd -eq 'uninstall') {",
+            "    reg import \"$dir\\uninstall-context.reg\"",
+            "}"
+        ]
+    },
     "bin": "notepad++.exe",
     "shortcuts": [
         [
@@ -63,6 +64,7 @@
         "nativeLang.xml",
         "session.xml",
         "shortcuts.xml",
+        "stylers.xml",
         "userDefineLang.xml"
     ],
     "checkver": {
@@ -75,6 +77,9 @@
             },
             "32bit": {
                 "url": "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v$version/npp.$version.portable.zip"
+            },
+            "arm64": {
+                "url": "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v$version/npp.$version.portable.arm64.zip"
             }
         },
         "hash": {

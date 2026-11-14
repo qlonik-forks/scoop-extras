@@ -4,7 +4,7 @@
     "homepage": "https://github.com/miniant-git/REAL",
     "license": "MIT",
     "suggest": {
-        "vcredist": "vcredist2017"
+        "vcredist": "extras/vcredist2022"
     },
     "architecture": {
         "64bit": {
@@ -22,8 +22,9 @@
         ]
     ],
     "checkver": {
-        "github": "https://github.com/miniant-git/REAL",
-        "regex": "[>\"]REAL\\s+v([\\d.]+)"
+        "github": "https://api.github.com/repos/miniant-git/REAL/releases",
+        "jsonpath": "$[*].name",
+        "regex": "REAL\\s+v([\\d.]+)"
     },
     "autoupdate": {
         "architecture": {

@@ -1,16 +1,16 @@
 {
-    "version": "5.1.5",
+    "version": "5.6.9",
     "description": "SCIntilla based Text Editor",
     "homepage": "https://www.scintilla.org/SciTE.html",
     "license": "HPND",
     "architecture": {
         "64bit": {
-            "url": "https://www.scintilla.org/wscite515.zip",
-            "hash": "4d58af4912617957a9142db2e07832b41c14e03c769a12c5f2624f2bdd31379f"
+            "url": "https://www.scintilla.org/wscite569.zip",
+            "hash": "68dabc521837f548298d584831c81b0fa5cddc7c21c2ef253f5b3cc56289a747"
         },
         "32bit": {
-            "url": "https://www.scintilla.org/wscite32_515.zip",
-            "hash": "7d79f14cd94b4404ff5ad5de763e928ab3c3cfce974ffb923c6582a96afd6a36",
+            "url": "https://www.scintilla.org/wscite32_569.zip",
+            "hash": "532b8013ad051e77da3bd8acc477baafdbc6d07853a2ae12af5f670b972a905a",
             "pre_install": "Rename-Item \"$dir\\SciTE32.exe\" 'SciTE.exe'"
         }
     },

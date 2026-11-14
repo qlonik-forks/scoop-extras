@@ -1,25 +1,23 @@
 {
-    "version": "5.33.2",
+    "version": "9.18.0",
     "description": "Powerful and easy to use e-book manager",
     "homepage": "https://calibre-ebook.com",
     "license": "GPL-3.0-only",
+    "notes": "Calibre drops support for 32-bit CPUs after v6.0.0, if you are running a 32-bit system, please install calibre-normal5 from Versions bucket.",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/kovidgoyal/calibre/releases/download/v5.33.2/calibre-64bit-5.33.2.msi",
-            "hash": "e2f97b11253b543d4766466c423fec58e29941565c1f3dd5dfd00e56d8cd1095",
-            "extract_dir": "PFiles\\Calibre2"
-        },
-        "32bit": {
-            "url": "https://github.com/kovidgoyal/calibre/releases/download/v5.33.2/calibre-5.33.2.msi",
-            "hash": "51d2c55c15fbe0bf6a77cd51cef4951bf5a87966dfb7aa835f9b607aa8f7d531",
-            "extract_dir": "PFiles\\Calibre"
+            "url": "https://download.calibre-ebook.com/9.18.0/calibre-64bit-9.18.0.msi",
+            "hash": "sha512:e5ff1896766a777d291744f956a4ba3ff6b19f0f1dfae1e78eb9577241d87ee4fcddeba9671ea75ad43aaf966a2a0e4006758035fa663a98736a9ace8aa7f924",
+            "extract_dir": "PFiles64\\Calibre2"
         }
     },
     "bin": [
         "calibre.exe",
+        "calibre-complete.exe",
         "calibre-customize.exe",
         "calibredb.exe",
         "calibre-debug.exe",
+        "calibre-parallel.exe",
         "calibre-server.exe",
         "calibre-smtp.exe",
         "ebook-convert.exe",
@@ -59,10 +57,10 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/kovidgoyal/calibre/releases/download/v$version/calibre-64bit-$version.msi"
-            },
-            "32bit": {
-                "url": "https://github.com/kovidgoyal/calibre/releases/download/v$version/calibre-$version.msi"
+                "url": "https://download.calibre-ebook.com/$version/calibre-64bit-$version.msi",
+                "hash": {
+                    "url": "https://calibre-ebook.com/signatures/calibre-64bit-$version.msi.sha512"
+                }
             }
         }
     }

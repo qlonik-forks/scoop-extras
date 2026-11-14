@@ -1,18 +1,34 @@
 {
-    "version": "1.150.1.1",
-    "description": "Text editor",
-    "homepage": "http://uvviewsoft.com/cudatext/",
-    "license": "MPL-2.0",
+    "version": "1.239.0.1",
+    "description": "A cross-platform, open-source text editor written in Object Pascal, available free of charge for both personal and commercial use, featuring fast startup and extensibility through Python-based add-ons.",
+    "homepage": "https://cudatext.github.io",
+    "license": {
+        "identifier": "MPL-2.0",
+        "url": "https://github.com/Alexey-T/CudaText/blob/HEAD/LICENSE"
+    },
     "architecture": {
         "64bit": {
-            "url": "https://www.fosshub.com/CudaText.html/cudatext-win-x64-1.150.1.1.zip",
-            "hash": "4f75dcd913b71be626fd29cb9b9bd6f01b2dd0c7c2775844f57706bdf119fbed"
+            "url": "https://sourceforge.net/projects/cudatext/files/release/1.239.0.1/cudatext-windows-amd64-1.239.0.1.zip",
+            "hash": "sha1:6670cc89cdd378c71de6f6e10648eb32952b6a78"
         },
         "32bit": {
-            "url": "https://www.fosshub.com/CudaText.html/cudatext-win-x32-1.150.1.1.zip",
-            "hash": "c396baa5837ff35695af3ffbc2bcc497f945dcbc117db5e7d51ba3d0d0e3048e"
+            "url": "https://sourceforge.net/projects/cudatext/files/release/1.239.0.1/cudatext-windows-i386-1.239.0.1.zip",
+            "hash": "sha1:805df0b6dca1868c3d90a1dacdc7951842f08074"
+        },
+        "arm64": {
+            "url": "https://sourceforge.net/projects/cudatext/files/release/1.239.0.1/cudatext-windows-aarch64-1.239.0.1.zip",
+            "hash": "sha1:981e0a32fa092dece2fe8067248a5bd9e76fc2b5"
         }
     },
+    "extract_dir": "cudatext",
+    "post_install": [
+        "'py', 'data' | ForEach-Object {",
+        "    if (Test-Path -Path \"$dir\\$_.original\" -PathType Container) {",
+        "        Copy-Item -Path \"$dir\\$_.original\\*\" -Destination \"$dir\\$_\" -Force -Recurse",
+        "        Remove-Item -Path \"$dir\\$_.original\" -Recurse -Force -ErrorAction SilentlyContinue",
+        "    }",
+        "}"
+    ],
     "bin": "cudatext.exe",
     "shortcuts": [
         [
@@ -20,18 +36,24 @@
             "CudaText"
         ]
     ],
-    "persist": "settings",
+    "persist": [
+        "py",
+        "data",
+        "settings"
+    ],
     "checkver": {
-        "url": "https://www.fosshub.com/CudaText.html",
-        "regex": "cudatext-win-x64-([\\d.]+)\\.zip"
+        "sourceforge": "cudatext/release"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://www.fosshub.com/CudaText.html/cudatext-win-x64-$version.zip"
+                "url": "https://sourceforge.net/projects/cudatext/files/release/$version/cudatext-windows-amd64-$version.zip"
             },
             "32bit": {
-                "url": "https://www.fosshub.com/CudaText.html/cudatext-win-x32-$version.zip"
+                "url": "https://sourceforge.net/projects/cudatext/files/release/$version/cudatext-windows-i386-$version.zip"
+            },
+            "arm64": {
+                "url": "https://sourceforge.net/projects/cudatext/files/release/$version/cudatext-windows-aarch64-$version.zip"
             }
         }
     }

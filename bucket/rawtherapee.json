@@ -1,12 +1,16 @@
 {
-    "version": "5.8",
+    "version": "5.13",
     "description": "Raw image processor",
     "homepage": "https://rawtherapee.com",
     "license": "GPL-3.0-only",
     "architecture": {
         "64bit": {
-            "url": "https://rawtherapee.com/shared/builds/windows/RawTherapee_5.8.exe",
-            "hash": "2d6f127598ef9a3d36a86657ac53c81b1957b6d9ae97fef1fadd8757f82aa915"
+            "url": "https://github.com/RawTherapee/RawTherapee/releases/download/5.13/RawTherapee_5.13_win64_x86_64_release.exe",
+            "hash": "d27df7ebde717c5efa114338a4b1cf1c426a439e5a1a92e142e87868cbe45383"
+        },
+        "arm64": {
+            "url": "https://github.com/RawTherapee/RawTherapee/releases/download/5.13/RawTherapee_5.13_win64_arm64_release.exe",
+            "hash": "967fc854266a1ab3629e2c23ddbfcd193cb71d996ffe16fe2a542d3610701cd2"
         }
     },
     "innosetup": true,
@@ -21,16 +25,16 @@
         ]
     ],
     "checkver": {
-        "github": "https://github.com/Beep6581/RawTherapee"
+        "github": "https://github.com/RawTherapee/RawTherapee"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://rawtherapee.com/shared/builds/windows/RawTherapee_$version.exe"
+                "url": "https://github.com/RawTherapee/RawTherapee/releases/download/$version/RawTherapee_$version_win64_x86_64_release.exe"
+            },
+            "arm64": {
+                "url": "https://github.com/RawTherapee/RawTherapee/releases/download/$version/RawTherapee_$version_win64_arm64_release.exe"
             }
-        },
-        "hash": {
-            "url": "$url.sha256sum"
         }
     }
 }

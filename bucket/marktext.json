@@ -1,41 +1,37 @@
 {
-    "version": "0.16.3",
+    "version": "0.23.0",
     "description": "A simple and elegant markdown editor",
-    "homepage": "https://marktext.app",
+    "homepage": "https://github.com/marktext/marktext",
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/marktext/marktext/releases/download/v0.16.3/marktext-x64-win.zip",
-            "hash": "321100f3156eef140ae7665624463cd8f8cbdb26e3d9fccd4a0f1a098e040323"
+            "url": "https://github.com/marktext/marktext/releases/download/v0.23.0/marktext-win-x64-0.23.0.zip",
+            "hash": "10ff69f91303f1009e7bdb1f490a4b30d716804ebc95b9e98c12b0c84cffa16f"
         },
-        "32bit": {
-            "url": "https://github.com/marktext/marktext/releases/download/v0.16.3/marktext-ia32-win.zip",
-            "hash": "e897cfa4e7bd8b17981a522dcb4803ce1c6e7236848aa3d957ac2d46362b441e"
+        "arm64": {
+            "url": "https://github.com/marktext/marktext/releases/download/v0.23.0/marktext-win-arm64-0.23.0.zip",
+            "hash": "182d7eaad1f1c924b8262b3e3d4310bba68d413b02b7c26a7596193321a83827"
         }
     },
-    "bin": [
-        [
-            "Mark Text.exe",
-            "marktext"
-        ]
-    ],
+    "bin": "marktext.exe",
     "shortcuts": [
         [
-            "Mark Text.exe",
+            "marktext.exe",
             "Mark Text"
         ]
     ],
-    "checkver": {
-        "github": "https://github.com/marktext/marktext"
-    },
+    "checkver": "github",
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/marktext/marktext/releases/download/v$version/marktext-x64-win.zip"
+                "url": "https://github.com/marktext/marktext/releases/download/v$version/marktext-win-x64-$version.zip"
             },
-            "32bit": {
-                "url": "https://github.com/marktext/marktext/releases/download/v$version/marktext-ia32-win.zip"
+            "arm64": {
+                "url": "https://github.com/marktext/marktext/releases/download/v$version/marktext-win-arm64-$version.zip"
             }
+        },
+        "hash": {
+            "url": "$baseurl/SHA256SUMS.txt"
         }
     }
 }

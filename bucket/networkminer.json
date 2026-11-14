@@ -1,11 +1,11 @@
 {
-    "version": "2.7.2",
+    "version": "3.2",
     "description": "Network Forensic Analysis Tool",
     "homepage": "https://www.netresec.com/?page=NetworkMiner",
     "license": "GPL-2.0-or-later",
     "url": "https://www.netresec.com/?download=NetworkMiner#/dl.zip",
-    "hash": "094e14271a560a8880d3dded329c3d7cd9c84bdee527f926261c1b080a639b7f",
-    "extract_dir": "NetworkMiner_2-7-2",
+    "hash": "daceec649fb4fe59b11e4a9e4ecd5f51c1dd37824280dfbeac67bec27b6b6d60",
+    "extract_dir": "NetworkMiner_3-2",
     "bin": "NetworkMiner.exe",
     "shortcuts": [
         [

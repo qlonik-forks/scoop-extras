@@ -1,49 +1,41 @@
 {
-    "version": "3.31",
+    "version": "4.5",
     "description": "A small utility that allows administration of MikroTik RouterOS using a fast and simple GUI.",
-    "homepage": "https://mikrotik.com/",
-    "license": "Unknown",
+    "homepage": "https://mikrotik.com/winbox",
+    "license": {
+        "identifier": "Freeware",
+        "url": "https://mikrotik.com/software/legal"
+    },
     "architecture": {
         "64bit": {
-            "url": "https://download.mikrotik.com/winbox/3.31/winbox64.exe",
-            "hash": "684e916766c261a8711f9416c411f80893a35bd75bce26f1f33438679eb9d95e",
-            "bin": [
-                [
-                    "winbox64.exe",
-                    "winbox"
-                ]
-            ],
-            "shortcuts": [
-                [
-                    "winbox64.exe",
-                    "RouterOS Winbox"
-                ]
-            ]
-        },
-        "32bit": {
-            "url": "https://download.mikrotik.com/winbox/3.31/winbox.exe",
-            "hash": "cb22a2539c49969fd541562e5fbf6974212f7badf2577494ce2fbf73dd798007",
-            "bin": "winbox.exe",
-            "shortcuts": [
-                [
-                    "winbox.exe",
-                    "RouterOS Winbox"
-                ]
-            ]
+            "url": "https://download.mikrotik.com/routeros/winbox/4.5/WinBox_Windows.zip",
+            "hash": "c98c23f4d7e9e3c68264a79967e59ede8defc86e4c7af3c7eae05d071ea867fd"
         }
     },
+    "bin": [
+        [
+            "WinBox.exe",
+            "winbox"
+        ]
+    ],
+    "shortcuts": [
+        [
+            "WinBox.exe",
+            "RouterOS WinBox"
+        ]
+    ],
     "checkver": {
-        "url": "https://mikrotik.com/download",
-        "regex": "WinBox ([\\d.]+)"
+        "url": "https://mikrotik.com/download/winbox",
+        "regex": ">v([\\d.]+)<"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://download.mikrotik.com/winbox/$version/winbox64.exe"
-            },
-            "32bit": {
-                "url": "https://download.mikrotik.com/winbox/$version/winbox.exe"
+                "url": "https://download.mikrotik.com/routeros/winbox/$version/WinBox_Windows.zip"
             }
+        },
+        "hash": {
+            "url": "$url.sha256"
         }
     }
 }

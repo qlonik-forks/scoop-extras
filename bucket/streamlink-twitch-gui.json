@@ -1,5 +1,5 @@
 {
-    "version": "1.13.0",
+    "version": "2.5.3",
     "description": "A multi platform Twitch.tv browser for Streamlink",
     "homepage": "https://streamlink.github.io/streamlink-twitch-gui/",
     "license": "MIT",
@@ -9,12 +9,12 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/streamlink/streamlink-twitch-gui/releases/download/v1.13.0/streamlink-twitch-gui-v1.13.0-win64.zip",
-            "hash": "ba0e2e6f27ab9e406d160942134d8b482e7659940e39af35ca171ff1e31c6357"
+            "url": "https://github.com/streamlink/streamlink-twitch-gui/releases/download/v2.5.3/streamlink-twitch-gui-v2.5.3-win64.zip",
+            "hash": "cc0eda3090a215abe23ca631cad91f247417677fc22fbc7f533ee5508bb42182"
         },
         "32bit": {
-            "url": "https://github.com/streamlink/streamlink-twitch-gui/releases/download/v1.13.0/streamlink-twitch-gui-v1.13.0-win32.zip",
-            "hash": "624de7d3ed40863b7a24b6ab4ddf8701a94358c90a8aa9785d43a1e86e85c7a4"
+            "url": "https://github.com/streamlink/streamlink-twitch-gui/releases/download/v2.5.3/streamlink-twitch-gui-v2.5.3-win32.zip",
+            "hash": "055f046d1393fb552247d9691cf16f9f705cb8627a69a0b8b7bc188cc2418e31"
         }
     },
     "extract_dir": "streamlink-twitch-gui",

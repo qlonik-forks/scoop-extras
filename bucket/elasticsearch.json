@@ -1,5 +1,5 @@
 {
-    "version": "7.15.2",
+    "version": "9.5.6",
     "description": "Distributed, RESTful Search Engine",
     "homepage": "https://www.elastic.co/products/elasticsearch",
     "license": {
@@ -8,11 +8,11 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.15.2-windows-x86_64.zip",
-            "hash": "sha512:1e189dc7a32209b875394641f4432a00f3cdf9af56ea7ebbc3f088f8894a8980adc6b70d85ee8c255911cd28cd543b36af53a41152e9f07d925bdf97507a9be3"
+            "url": "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-9.5.6-windows-x86_64.zip",
+            "hash": "sha512:f08af94813976ec71afb34a14b882c275cdc7e7dbc28c0c1ef1e4db31b48b071f5bd287f66f727800e56d855a88f96dd0c627c735b5ee2718be07c87e695101f"
         }
     },
-    "extract_dir": "elasticsearch-7.15.2",
+    "extract_dir": "elasticsearch-9.5.6",
     "pre_install": [
         "    # Overwrite SCRIPT because elasticsearch-env.bat doesn't care if SCRIPT or ES_HOME are already set ...",
         "$file = \"$dir\\bin\\elasticsearch-env.bat\"",
@@ -24,12 +24,7 @@
         "$cont = $cont -replace '#path.logs:.*$', \"path.logs: $persist_dir\\logs\"",
         "Set-Content \"$file\" ($cont -join \"`r`n\") -Encoding ASCII"
     ],
-    "bin": [
-        "bin\\elasticsearch.bat",
-        "bin\\elasticsearch-keystore.bat",
-        "bin\\elasticsearch-plugin.bat",
-        "bin\\elasticsearch-service.bat"
-    ],
+    "env_add_path": "bin",
     "persist": [
         "config",
         "plugins"

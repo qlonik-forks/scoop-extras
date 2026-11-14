@@ -1,13 +1,19 @@
 {
-    "version": "2.8",
+    "version": "2.13",
     "description": "Set of utilities for managing multiple monitor setups.",
-    "homepage": "http://dualmonitortool.sourceforge.net/",
+    "homepage": "https://dualmonitortool.sourceforge.net/",
     "license": "GPL-3.0-only",
-    "url": "https://downloads.sourceforge.net/project/dualmonitortool/dualmonitortool/2.8/DualMonitorTools-2.8.zip",
-    "hash": "sha1:19179c5f6028378092401d899f718c7de8519173",
+    "url": "https://downloads.sourceforge.net/project/dualmonitortool/dualmonitortool/2.13/DualMonitorTools-2.13.zip",
+    "hash": "sha1:703e96fcf488a8ad2e52074875636f71314bd5d7",
     "pre_install": [
-        "if (-not (Test-Path \"$persist_dir\\DmtMagicWords.xml\")) { New-Item \"$dir\\DmtMagicWords.xml\" -ItemType File | Out-Null }",
-        "if (-not (Test-Path \"$persist_dir\\DmtSettings.xml\")) { New-Item \"$dir\\DmtSettings.xml\" -ItemType File | Out-Null }"
+        "# Hardlink is incompatible with app. Using copy workaround.",
+        "'DmtMagicWords.xml', 'DmtSettings.xml' | ForEach-Object {",
+        "    if (Test-Path \"$persist_dir\\$_\") {",
+        "        Copy-Item \"$persist_dir\\$_\" \"$dir\\$_\" -Force",
+        "    } else {",
+        "        Set-Content -Path \"$dir\\$_\" -Value '<?xml version=\"1.0\" encoding=\"utf-8\"?>' -Encoding UTF8",
+        "    }",
+        "}"
     ],
     "bin": "DMT.exe",
     "shortcuts": [
@@ -16,11 +22,19 @@
             "Dual Monitor Tools"
         ]
     ],
-    "persist": [
-        "DmtMagicWords.xml",
-        "DmtSettings.xml"
+    "pre_uninstall": [
+        "# Hardlink is incompatible with app. Using copy workaround.",
+        "'DmtMagicWords.xml', 'DmtSettings.xml' | ForEach-Object {",
+        "    if (Test-Path \"$dir\\$_\") {",
+        "        ensure $persist_dir | Out-Null",
+        "        Copy-Item \"$dir\\$_\" \"$persist_dir\\$_\" -Force",
+        "    }",
+        "}"
     ],
-    "checkver": "Dual Monitor Tools is ([\\d.]+)",
+    "checkver": {
+        "url": "https://sourceforge.net/projects/dualmonitortool/files/",
+        "regex": "dualmonitortool/([\\d.]+)/"
+    },
     "autoupdate": {
         "url": "https://downloads.sourceforge.net/project/dualmonitortool/dualmonitortool/$version/DualMonitorTools-$version.zip"
     }

@@ -1,5 +1,5 @@
 {
-    "version": "2021.October.26",
+    "version": "20261105",
     "description": "A set of utilities to manage, diagnose, troubleshoot, and monitor a Windows environment.",
     "homepage": "https://docs.microsoft.com/en-us/sysinternals/",
     "license": {
@@ -7,11 +7,20 @@
         "url": "https://docs.microsoft.com/en-us/sysinternals/license-terms"
     },
     "url": "https://download.sysinternals.com/files/SysinternalsSuite.zip",
-    "hash": "70c573589fbea5cc7d8f0b4c75e9d4172f932c21ff9368512eb5215e05c97ebb",
+    "hash": "e7f49d1f4477e416b3051636dc44929b20ae025b46a1ee4cd8c1f1e869af6ae6",
     "checkver": {
-        "url": "https://docs.microsoft.com/en-us/sysinternals/downloads/sysinternals-suite",
-        "regex": "\\bUpdated:\\s*(\\w+)\\s+(\\d+),\\s+(\\d+)\\b",
-        "replace": "${3}.${1}.${2}"
+        "script": [
+            "try {",
+            "    $resp = Invoke-WebRequest 'https://raw.githubusercontent.com/MicrosoftDocs/sysinternals/main/sysinternals/downloads/sysinternals-suite.md'",
+            "    # scrape information from a line like 'ms.date: 12/16/2024'",
+            "    $lines = $resp.Content.Split([Environment]::NewLine)",
+            "    $lines | Select-String -Pattern 'ms.date: (?<month>\\d+)/(?<day>\\d+)/(?<year>\\d+)' | Write-Output",
+            "} catch {",
+            "    throw $_.Exception",
+            "}"
+        ],
+        "regex": "ms.date: (?<month>\\d+)/(?<day>\\d+)/(?<year>\\d+)",
+        "replace": "${year}${month}${day}"
     },
     "autoupdate": {
         "url": "https://download.sysinternals.com/files/SysinternalsSuite.zip"
@@ -56,7 +65,6 @@
                 ],
                 "Contig64.exe",
                 "Coreinfo.exe",
-                "ctrl2cap.exe",
                 "Dbgview.exe",
                 "Desktops.exe",
                 [
@@ -424,7 +432,6 @@
                 "Clockres.exe",
                 "Contig.exe",
                 "Coreinfo.exe",
-                "ctrl2cap.exe",
                 "Dbgview.exe",
                 "Desktops.exe",
                 "disk2vhd.exe",

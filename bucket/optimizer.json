@@ -1,0 +1,23 @@
+{
+    "version": "17.0",
+    "description": "An advanced configuration utility that helps you restore your privacy and increase your security.",
+    "homepage": "https://github.com/hellzerg/optimizer",
+    "license": "GPL-3.0",
+    "url": "https://github.com/hellzerg/optimizer/releases/download/17.0/Optimizer-17.0.exe#/Optimizer.exe",
+    "hash": "eeb367f0b8c651c10934d985bfa53a94ca56f7c6bff39a44d9bd944514a6dafb",
+    "bin": "Optimizer.exe",
+    "shortcuts": [
+        [
+            "Optimizer.exe",
+            "Optimizer"
+        ]
+    ],
+    "checkver": "github",
+    "autoupdate": {
+        "url": "https://github.com/hellzerg/optimizer/releases/download/$version/Optimizer-$version.exe#/Optimizer.exe",
+        "hash": {
+            "url": "https://github.com/hellzerg/optimizer/releases/latest",
+            "find": "<p>$sha256</p></div>"
+        }
+    }
+}

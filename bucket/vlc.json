@@ -1,19 +1,23 @@
 {
-    "version": "3.0.16",
+    "version": "3.0.24",
     "description": "A free and open source cross-platform multimedia player and framework that plays most multimedia files as well as DVDs, Audio CDs, VCDs, and various streaming protocols.",
     "homepage": "https://www.videolan.org/",
     "license": "GPL-2.0-only",
     "architecture": {
         "64bit": {
-            "url": "https://download.videolan.org/pub/vlc/3.0.16/win64/vlc-3.0.16-win64.7z",
-            "hash": "af609a4b20bbe69b21d075077328dfcd188395a700151aa989c92ec840666570"
+            "url": "https://download.videolan.org/pub/vlc/3.0.24/win64/vlc-3.0.24-win64.7z",
+            "hash": "1ed59c09152e78aff84663fa76efab26057716576db74332858810e5ef54ae1f"
         },
         "32bit": {
-            "url": "https://download.videolan.org/pub/vlc/3.0.16/win32/vlc-3.0.16-win32.7z",
-            "hash": "0cefb38c46e3bc440122d29bb4e3f6467b45d82cae4c1670483c73340bac56e3"
+            "url": "https://download.videolan.org/pub/vlc/3.0.24/win32/vlc-3.0.24-win32.7z",
+            "hash": "80b61c03a5c7c4d4b44a79a2db34eda244ad6b09f1e0f44fcf6183f4c10e9966"
+        },
+        "arm64": {
+            "url": "https://download.videolan.org/pub/vlc/3.0.24/winarm64/vlc-3.0.24-winarm64.7z",
+            "hash": "4c448ca4995bafc4954a4c929bc7dad756eb0a234afc9d58946ad05b8fe51389"
         }
     },
-    "extract_dir": "vlc-3.0.16",
+    "extract_dir": "vlc-3.0.24",
     "pre_install": [
         "if (!(Test-Path \"$persist_dir\\portable\") -and (Test-Path \"$env:APPDATA\\vlc\")) {",
         "    info \"Copying old '$env:APPDATA\\vlc' to '$persist_dir\\portable'\"",
@@ -41,6 +45,9 @@
             },
             "32bit": {
                 "url": "https://download.videolan.org/pub/vlc/$version/win32/vlc-$version-win32.7z"
+            },
+            "arm64": {
+                "url": "https://download.videolan.org/pub/vlc/$version/winarm64/vlc-$version-winarm64.7z"
             }
         },
         "hash": {

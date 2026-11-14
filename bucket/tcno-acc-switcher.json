@@ -1,43 +1,38 @@
 {
-    "version": "3.0.02",
-    "description": "A super fast account switcher for Steam",
+    "version": "2025-11-20_03",
+    "description": "A Super-fast account switcher for Steam, Battle.net, Epic Games, Origin, Riot, Ubisoft and many others!",
     "homepage": "https://github.com/TcNobo/TcNo-Acc-Switcher",
     "license": "GPL-3.0-only,LGPL-2.1-only,...",
-    "notes": ".NET Framework 4.8 is required.",
+    "notes": [
+        "Run `First Run Installer` to ensure that all required runtimes are properly installed.",
+        "This step only needs to be performed once per computer — running it again will have no effect."
+    ],
     "architecture": {
         "64bit": {
-            "url": "https://github.com/TcNobo/TcNo-Acc-Switcher/releases/download/3.0.02/TcNo.Account.Switcher.x64.zip",
-            "hash": "42d17824569d311451e78cf5f12333f1c6af2dc9080b68c5226c741e4e2aa1e4",
-            "extract_dir": "TcNo.Account.Switcher.x64"
-        },
-        "32bit": {
-            "url": "https://github.com/TcNobo/TcNo-Acc-Switcher/releases/download/3.0.02/TcNo.Account.Switcher.x32.zip",
-            "hash": "16c62e3392821f082993a1f5c6bf1c21550351f6f72f7ee6a85d33d84a48f486",
-            "extract_dir": "TcNo.Account.Switcher.x32"
+            "url": "https://github.com/TCNOco/TcNo-Acc-Switcher/releases/download/2025-11-20_03/TcNo-Acc-Switcher_2025-11-20_03.7z",
+            "hash": "f913135639584a8b4850ed8e1ece5a3fdbc32624deebf8ec804cb6b1884e5341"
         }
     },
-    "pre_install": [
-        "'globals.json', 'Steam\\SteamSettings.json', 'Steam\\SteamVACCache.json', 'Steam\\Tray_Users.json' | ForEach-Object {",
-        "    $cont = if ($_ -like '*Tray_Users*') { '[]' } else { '{}' }",
-        "    if (!(Test-Path \"$persist_dir\\$_\")) { Set-Content \"$dir\\$_\" $cont -Encoding Ascii | Out-Null }",
-        "}",
-        "Remove-Item \"$dir\\TcNo Acc Switcher Updater.exe\""
-    ],
-    "bin": "TcNo Account Switcher.exe",
     "shortcuts": [
         [
-            "TcNo Account Switcher.exe",
-            "TcNo Account Switcher"
+            "_First_Run_Installer.exe",
+            "TcNo Account Switcher\\First Run Installer"
+        ],
+        [
+            "TcNo-Acc-Switcher.exe",
+            "TcNo Account Switcher\\TcNo Account Switcher"
         ]
     ],
-    "persist": [
-        "Errors",
-        "globals.json",
-        "Steam\\SteamSettings.json",
-        "Steam\\SteamVACCache.json",
-        "Steam\\Tray_Users.json",
-        "Steam\\Errors",
-        "Steam\\images"
-    ],
-    "checkver": "github"
+    "checkver": {
+        "github": "https://api.github.com/repos/TCNOco/TcNo-Acc-Switcher/releases/latest",
+        "jsonpath": "$.assets[?(@.name =~ /.+\\.7z/i)].browser_download_url",
+        "regex": "(?i)download/([\\d._-]+)/(?<name>(?![^\"]+CEF)[^\"]+\\.7z)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/TCNOco/TcNo-Acc-Switcher/releases/download/$version/$matchName"
+            }
+        }
+    }
 }

@@ -1,19 +1,19 @@
 {
-    "version": "11.4.0.2831",
+    "version": "16.6.0.3238",
     "description": "A multi-tabbed file manager and is an alternative to the standard Windows Explorer",
-    "homepage": "http://multicommander.com/",
+    "homepage": "https://multicommander.com/",
     "license": {
         "identifier": "Freeware",
-        "url": "http://multicommander.com/docs/License"
+        "url": "https://multicommander.com/docs/License"
     },
     "architecture": {
         "64bit": {
-            "url": "http://multicommander.com/files/updates/MultiCommander_x64_Portable_(11.4.0.2831).zip",
-            "hash": "657bf7d26cd088fcbab5550fa905c50f6811e7eade8f5aa97ea407356c75598b"
+            "url": "https://multicommander.com/files/updates/MultiCommander_x64_Portable_(16.6.0.3238).zip",
+            "hash": "6e2714a42908900627f8c048ce2d5015a1f4945ab04475f487b572b1da1e39f1"
         },
         "32bit": {
-            "url": "http://multicommander.com/files/updates/MultiCommander_win32_Portable_(11.4.0.2831).zip",
-            "hash": "526beea014a98504dc96a44565eb965680f77470ff20adb36c79ebb875614dda"
+            "url": "https://multicommander.com/files/updates/MultiCommander_win32_Portable_(16.6.0.3238).zip",
+            "hash": "ffc2f415ddb8cef67af2bb6e74ff8ecbbacc45956f45710b1ab3d30c4949a68f"
         }
     },
     "bin": "MultiCommander.exe",
@@ -30,16 +30,16 @@
         "UserData"
     ],
     "checkver": {
-        "url": "http://multicommander.com/updates/version.xml",
+        "url": "https://multicommander.com/updates/version.xml",
         "xpath": "/updates/multicommander/stable/@version"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "http://multicommander.com/files/updates/MultiCommander_x64_Portable_($version).zip"
+                "url": "https://multicommander.com/files/updates/MultiCommander_x64_Portable_($version).zip"
             },
             "32bit": {
-                "url": "http://multicommander.com/files/updates/MultiCommander_win32_Portable_($version).zip"
+                "url": "https://multicommander.com/files/updates/MultiCommander_win32_Portable_($version).zip"
             }
         }
     }

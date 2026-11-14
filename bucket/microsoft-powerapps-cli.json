@@ -1,13 +1,13 @@
 {
-    "version": "1.9.9",
+    "version": "2.15.1",
     "description": "Simple, single-stop tool for developing customizations and extensions for Microsoft PowerApps.",
     "homepage": "https://docs.microsoft.com/en-us/powerapps/developer/component-framework/overview",
     "license": {
         "identifier": "Proprietary",
         "url": "https://www.nuget.org/packages/Microsoft.PowerApps.CLI/1.0.6/License"
     },
-    "url": "https://www.nuget.org/api/v2/package/Microsoft.PowerApps.CLI/1.9.9#/dl.zip",
-    "hash": "48d42d5674d8d40ba2e9a54ea1354afc091dfc39418d822b1c77ecbd0b7b6ded",
+    "url": "https://www.nuget.org/api/v2/package/Microsoft.PowerApps.CLI/2.15.1#/dl.zip",
+    "hash": "f1d2b50a4e0f296a6e45e23f46a1f40004f4d21f2ff1174adea5fc655d826cb1",
     "extract_dir": "tools",
     "bin": "pac.exe",
     "checkver": {

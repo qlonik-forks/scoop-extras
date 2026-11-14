@@ -1,39 +1,41 @@
 {
-    "version": "464",
+    "version": "695",
     "description": "A personal booru-style media tagger",
     "homepage": "https://hydrusnetwork.github.io/hydrus/",
     "license": "WTFPL",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/hydrusnetwork/hydrus/releases/download/v464/Hydrus.Network.464.-.Windows.-.Extract.only.zip",
-            "hash": "5c3d1b6149a0196104e730bfa4d0ca8b7216ca4a866a804e0010c5cc1cfd4d5a"
+            "url": "https://github.com/hydrusnetwork/hydrus/releases/download/v695/Hydrus.Network.695.-.Windows.-.Extract.only.zip",
+            "hash": "373efd815a10308e0bc757d172567a2f9d2101b6610305d6fc86bc0c96034381"
         }
     },
     "extract_dir": "Hydrus Network",
     "post_install": "if (Test-Path \"$dir\\db.original\\sqlite3.exe\") { Copy-Item \"$dir\\db.original\\sqlite3.exe\" \"$dir\\db\" -Force }",
     "bin": [
         [
-            "client.exe",
+            "hydrus_client.exe",
             "hydrusclient"
         ],
         [
-            "server.exe",
+            "hydrus_server.exe",
             "hydrusserver"
         ]
     ],
     "shortcuts": [
         [
-            "client.exe",
-            "hydrus client"
+            "hydrus_client.exe",
+            "Hydrus Client"
         ],
         [
-            "server.exe",
-            "hydrus server"
+            "hydrus_server.exe",
+            "Hydrus Server"
         ]
     ],
     "persist": "db",
     "checkver": {
-        "github": "https://github.com/hydrusnetwork/hydrus"
+        "github": "https://api.github.com/repos/hydrusnetwork/hydrus/releases",
+        "jsonpath": "$[*].assets[*].browser_download_url",
+        "regex": "download/v(?<version>[\\d.]+[a-z]{0,1})/Hydrus\\.Network\\.\\k<version>\\.-\\.Windows\\.-\\.Extract\\.only\\.zip"
     },
     "autoupdate": {
         "architecture": {

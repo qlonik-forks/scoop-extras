@@ -1,27 +1,27 @@
 {
-    "version": "8.3.11.21",
+    "version": "10.0.6.906",
     "description": "A lightweight, versatile image viewer",
     "homepage": "https://imageglass.org",
     "license": "GPL-3.0-only",
-    "notes": "If this app doesn't work maybe you need to clean '$dir\\igconfig.xml'.",
+    "notes": "If this app doesn't work maybe you need to clean '$dir\\igconfig.json' and reinstall '$dir\\Themes'.",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/d2phap/ImageGlass/releases/download/8.3.11.21/ImageGlass_8.3.11.21_x64.zip",
-            "hash": "sha1:2d149661e7dd5928267c3a0d19be383084b478ed",
-            "extract_dir": "ImageGlass_8.3.11.21_x64"
+            "url": "https://github.com/d2phap/ImageGlass/releases/download/10.0.6.906/ImageGlass_10.0.6.906_win-x64.zip",
+            "hash": "3fffebdd7842b9aa9b38411a1daf93d49ddd27e388ab55ec410307c73ef2fc1b",
+            "extract_dir": "ImageGlass_10.0.6.906_win-x64"
+        },
+        "arm64": {
+            "url": "https://github.com/d2phap/ImageGlass/releases/download/10.0.6.906/ImageGlass_10.0.6.906_win-arm64.zip",
+            "hash": "69941ff47534cd612d71afa7019b2009fb354dc828f3aba56e81f9b4217a8e67",
+            "extract_dir": "ImageGlass_10.0.6.906_win-arm64"
         }
     },
     "pre_install": [
-        "if (!(Test-Path \"$persist_dir\\igconfig.xml\")) {",
-        "    Add-Content \"$dir\\igconfig.xml\" '<ImageGlass><Configuration><Info/><Content><Item key=\"AutoUpdate\" value=\"0\" /></Content></Configuration></ImageGlass>' -Encoding Ascii",
+        "if (!(Test-Path \"$persist_dir\\igconfig.json\")) {",
+        "    Add-Content \"$dir\\igconfig.json\" '{\"AutoUpdate\": \"0\"}' -Encoding utf8",
         "}"
     ],
-    "bin": [
-        "ImageGlass.exe",
-        "igcmd.exe",
-        "igcmdWin10.exe",
-        "igtasks.exe"
-    ],
+    "bin": "ImageGlass.exe",
     "shortcuts": [
         [
             "ImageGlass.exe",
@@ -29,8 +29,8 @@
         ]
     ],
     "persist": [
-        "Themes",
-        "igconfig.xml"
+        "_themes",
+        "igconfig.json"
     ],
     "checkver": {
         "github": "https://github.com/d2phap/ImageGlass"
@@ -38,12 +38,12 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/d2phap/ImageGlass/releases/download/$version/ImageGlass_$version_x64.zip",
-                "hash": {
-                    "url": "https://imageglass.org/download",
-                    "regex": "(?sm)Download portable x64 version.*?$sha1"
-                },
-                "extract_dir": "ImageGlass_$version_x64"
+                "url": "https://github.com/d2phap/ImageGlass/releases/download/$version/ImageGlass_$version_win-x64.zip",
+                "extract_dir": "ImageGlass_$version_win-x64"
+            },
+            "arm64": {
+                "url": "https://github.com/d2phap/ImageGlass/releases/download/$version/ImageGlass_$version_win-arm64.zip",
+                "extract_dir": "ImageGlass_$version_win-arm64"
             }
         }
     }

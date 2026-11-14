@@ -1,70 +1,96 @@
 {
-    "version": "1.62.3",
-    "description": "Binary releases of VS Code without MS branding/telemetry/licensing.",
-    "homepage": "https://github.com/VSCodium/vscodium",
+    "version": "1.143.17232",
+    "description": "A community-driven, freely-licensed binary distribution of Microsoft's editor VS Code.",
+    "homepage": "https://vscodium.com/",
     "license": "MIT",
-    "notes": "Add VSCodium as a context menu option by running: \"$dir\\install-context.reg\"",
+    "notes": [
+        "Add VSCodium as a context menu option by running:",
+        "reg import \"$dir\\install-context.reg\"",
+        "For file associations, run:",
+        "reg import \"$dir\\install-associations.reg\""
+    ],
     "architecture": {
         "64bit": {
-            "url": [
-                "https://github.com/VSCodium/vscodium/releases/download/1.62.3/VSCodium-win32-x64-1.62.3.zip",
-                "https://raw.githubusercontent.com/ScoopInstaller/Extras/master/scripts/vscode/install-context.reg",
-                "https://raw.githubusercontent.com/ScoopInstaller/Extras/master/scripts/vscode/uninstall-context.reg"
-            ],
-            "hash": [
-                "6cc6cf92b3c2afe5157a35f22535a724717caee6bc38c49e2a4cf5de924dc419",
-                "8ef94c82319b69754bdae0099af266d184d179a37af8b8beb11334c6ab639752",
-                "df2a5162e72e2518e2b75b4337c8e7b46c136554872af90fa0de1cf6ebef376f"
-            ]
+            "url": "https://github.com/VSCodium/vscodium/releases/download/1.143.17232/VSCodium-win32-x64-1.143.17232.zip",
+            "hash": "a1090868af8ac0ac04c22d79fdd02246fa115a78daf38a741d8db06df1753c1d"
         },
-        "32bit": {
-            "url": [
-                "https://github.com/VSCodium/vscodium/releases/download/1.62.3/VSCodium-win32-ia32-1.62.3.zip",
-                "https://raw.githubusercontent.com/ScoopInstaller/Extras/master/scripts/vscode/install-context.reg",
-                "https://raw.githubusercontent.com/ScoopInstaller/Extras/master/scripts/vscode/uninstall-context.reg"
-            ],
-            "hash": [
-                "0ee47b077f63231c025045e4af1178236eda6655cfac74049bac33bcfa972975",
-                "8ef94c82319b69754bdae0099af266d184d179a37af8b8beb11334c6ab639752",
-                "df2a5162e72e2518e2b75b4337c8e7b46c136554872af90fa0de1cf6ebef376f"
-            ]
+        "arm64": {
+            "url": "https://github.com/VSCodium/vscodium/releases/download/1.143.17232/VSCodium-win32-arm64-1.143.17232.zip",
+            "hash": "fa90eb32767212403885e01aa1b8b872ed786fa000e6ef96570f95ffbc8bb3eb"
         }
     },
+    "pre_install": [
+        "$product_path = \"$dir\\resources\\app\\product.json\"",
+        "if (Test-Path -Path $product_path) {",
+        "    $product = Get-Content -Path $product_path -Raw -Encoding UTF8 | ConvertFrom-Json",
+        "    if (![string]::IsNullOrEmpty($product.updateUrl)) {",
+        "        Get-Content -Path $product_path | Where-Object {$_ -notmatch \"updateurl\"} | Set-Content temp.json",
+        "        Move-Item -Path temp.json -Destination $product_path -Force",
+        "    }",
+        "}"
+    ],
+    "post_install": [
+        "$dirpath = \"$dir\".Replace('\\', '\\\\')",
+        "$exepath = \"$dir\\VSCodium.exe\".Replace('\\', '\\\\')",
+        "'install-associations', 'uninstall-associations', 'install-context', 'uninstall-context' | ForEach-Object {",
+        "  if (Test-Path \"$bucketsdir\\extras\\scripts\\vscode\\$_.reg\") {",
+        "    $content = Get-Content \"$bucketsdir\\extras\\scripts\\vscode\\$_.reg\"",
+        "    $content = $content.Replace('$codedir', $dirpath)",
+        "    $content = $content.Replace('$code', $exepath)",
+        "    $content = $content.Replace('\\\\$versionfolder', '')",
+        "    $content = $content.Replace('&Code', '&VSCodium')",
+        "    if ($global) {",
+        "      $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
+        "    }",
+        "    $content | Set-Content -Path \"$dir\\$_.reg\"",
+        "  }",
+        "}",
+        "if (!(Test-Path \"$dir\\data\\extensions\") -and (Test-Path \"$env:USERPROFILE\\.vscode-oss\\extensions\")) {",
+        "    info '[Portable Mode] Copying extensions...'",
+        "    Copy-Item \"$env:USERPROFILE\\.vscode-oss\\extensions\" \"$dir\\data\" -Recurse",
+        "}",
+        "if (!(Test-Path \"$dir\\data\\user-data\") -and (Test-Path \"$env:AppData\\VSCodium\")) {",
+        "    info '[Portable Mode] Copying user data...'",
+        "    Copy-Item \"$env:AppData\\VSCodium\" \"$dir\\data\\user-data\" -Recurse",
+        "}",
+        "$extensions_file = \"$dir\\data\\extensions\\extensions.json\"",
+        "if ((Test-Path \"$extensions_file\")) {",
+        "    info 'Adjusting path in extensions file...'",
+        "    (Get-Content \"$extensions_file\") -replace '(?<=vscodium(/|\\\\\\\\)).*?(?=(/|\\\\\\\\)data(/|\\\\\\\\)extensions)', $version | Set-Content \"$extensions_file\"",
+        "}"
+    ],
     "env_add_path": "bin",
+    "bin": [
+        [
+            "bin/codium.cmd",
+            "vscodium"
+        ]
+    ],
     "shortcuts": [
         [
             "VSCodium.exe",
             "VSCodium"
         ]
     ],
-    "post_install": [
-        "if (Test-Path \"$dir\\install-context.reg\") {",
-        "  $codepath = \"$dir\\VSCodium.exe\".Replace('\\', '\\\\')",
-        "  $content = Get-Content \"$dir\\install-context.reg\"",
-        "  $content = $content.Replace('$code', $codepath)",
-        "  $content = $content.Replace('Code', 'VSCodium')",
-        "  if ($global) {",
-        "    $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
-        "  }",
-        "  $content | Set-Content -Path \"$dir\\vscodium-install-context.reg\"",
-        "}",
-        "if (Test-Path \"$dir\\uninstall-context.reg\") {",
-        "  $content = Get-Content \"$dir\\uninstall-context.reg\"",
-        "  $content = $content.Replace('Code', 'VSCodium')",
-        "  if ($global) {",
-        "    $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
-        "  }",
-        "  $content | Set-Content -Path \"$dir\\uninstall-context.reg\"",
-        "}"
-    ],
-    "checkver": "github",
+    "persist": "data",
+    "uninstaller": {
+        "script": [
+            "if ($cmd -eq 'uninstall') {",
+            "    reg import \"$dir\\uninstall-associations.reg\" *> $null",
+            "    reg import \"$dir\\uninstall-context.reg\" *> $null",
+            "}"
+        ]
+    },
+    "checkver": {
+        "github": "https://github.com/VSCodium/vscodium"
+    },
     "autoupdate": {
         "architecture": {
             "64bit": {
                 "url": "https://github.com/VSCodium/vscodium/releases/download/$version/VSCodium-win32-x64-$version.zip"
             },
-            "32bit": {
-                "url": "https://github.com/VSCodium/vscodium/releases/download/$version/VSCodium-win32-ia32-$version.zip"
+            "arm64": {
+                "url": "https://github.com/VSCodium/vscodium/releases/download/$version/VSCodium-win32-arm64-$version.zip"
             }
         },
         "hash": {

@@ -1,16 +1,20 @@
 {
-    "version": "3.2.5",
+    "version": "7.4.4",
     "description": "A messaging app with a focus on speed and security",
     "homepage": "https://telegram.org",
     "license": "GPL-3.0-only",
     "architecture": {
         "64bit": {
-            "url": "https://updates.tdesktop.com/tx64/tportable-x64.3.2.5.zip",
-            "hash": "e4b7ccc7276ae14f3292f7c825b891ff786f62983488408450104a321a409817"
+            "url": "https://github.com/telegramdesktop/tdesktop/releases/download/v7.4.4/td-portable-win-x64-7.4.4.zip",
+            "hash": "8bbe0754e3285ef4753f85899e06d7d432dde2c011b9f6cfc154e45b8fc97152"
         },
         "32bit": {
-            "url": "https://updates.tdesktop.com/tsetup/tportable.3.2.5.zip",
-            "hash": "c630498f317c98606ea9aeef70d4c9059491a9fbc7ec60c3fa5316c8505f8738"
+            "url": "https://github.com/telegramdesktop/tdesktop/releases/download/v7.4.4/td-portable-win-x86-7.4.4.zip",
+            "hash": "842a36c3b02f60e95665f1180d1eabc195f86f716f2ecd8578a7dc9d1df124c5"
+        },
+        "arm64": {
+            "url": "https://github.com/telegramdesktop/tdesktop/releases/download/v7.4.4/td-portable-win-arm-7.4.4.zip",
+            "hash": "baf5f046c6661dc3058a13ac294caa0bd3a19cd79236d836bcaacaae90a49277"
         }
     },
     "extract_dir": "Telegram",
@@ -29,10 +33,13 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://updates.tdesktop.com/tx64/tportable-x64.$version.zip"
+                "url": "https://github.com/telegramdesktop/tdesktop/releases/download/v$version/td-portable-win-x64-$version.zip"
             },
             "32bit": {
-                "url": "https://updates.tdesktop.com/tsetup/tportable.$version.zip"
+                "url": "https://github.com/telegramdesktop/tdesktop/releases/download/v$version/td-portable-win-x86-$version.zip"
+            },
+            "arm64": {
+                "url": "https://github.com/telegramdesktop/tdesktop/releases/download/v$version/td-portable-win-arm-$version.zip"
             }
         }
     }

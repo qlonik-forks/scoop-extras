@@ -13,8 +13,5 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 
 [*.{yml,yaml}]
+end_of_line = lf
 indent_size = 2
-
-[*.{[Bb][Aa][Tt],[Cc][Mm][Dd]}]
-# DOS/Win *requires* BAT/CMD files to have CRLF newlines
-end_of_line = crlf

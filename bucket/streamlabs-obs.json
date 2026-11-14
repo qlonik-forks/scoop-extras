@@ -1,12 +1,12 @@
 {
-    "version": "1.6.3",
+    "version": "1.22.4",
     "description": "Open Broadcaster Software for Gamers",
     "homepage": "https://streamlabs.com/streamlabs-obs",
     "license": "GPL-3.0-only",
     "architecture": {
         "64bit": {
-            "url": "https://slobs-cdn.streamlabs.com/Streamlabs+OBS+Setup+1.6.3.exe#/dl.7z",
-            "hash": "6148f383af67b47d65df3f0f62e8dae64e63d5066b8619913e9e99ce208c3702",
+            "url": "https://slobs-cdn.streamlabs.com/Streamlabs+Desktop+Setup+1.22.4.exe#/dl.7z",
+            "hash": "67007c8bd1ffbd44161907efd3d40f405c17ba825d5496889c03d6c2ec1563cc",
             "pre_install": [
                 "Expand-7zipArchive \"$dir\\`$PLUGINSDIR\\app-64.7z\" \"$dir\"",
                 "Remove-Item \"$dir\\`$PLUGINSDIR\", \"$dir\\Uninstall*\" -Force -Recurse"
@@ -20,13 +20,14 @@
         ]
     ],
     "checkver": {
-        "url": "https://api.github.com/repos/stream-labs/streamlabs-obs/tags?per_page=100",
-        "regex": "\"v([\\d.]+)\""
+        "github": "https://api.github.com/repos/streamlabs/desktop/tags?per_page=100",
+        "jsonpath": "$[*].name",
+        "regex": "v([\\d.]+)"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://slobs-cdn.streamlabs.com/Streamlabs+OBS+Setup+$version.exe#/dl.7z"
+                "url": "https://slobs-cdn.streamlabs.com/Streamlabs+Desktop+Setup+$version.exe#/dl.7z"
             }
         }
     }

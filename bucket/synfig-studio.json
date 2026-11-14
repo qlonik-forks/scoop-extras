@@ -1,16 +1,16 @@
 {
-    "version": "1.4.2",
+    "version": "1.5.5",
     "description": "2D Animation Software",
     "homepage": "https://www.synfig.org",
     "license": "GPL-3.0-or-later",
     "architecture": {
         "64bit": {
-            "url": "https://www.fosshub.com/Synfig.html/SynfigStudio-1.4.2-2021.07.29-win64-dc54d.zip",
-            "hash": "3dcb19cdda5331425d5e0e5f21cc161c79861aa0f53266b580389d1c78839fcd"
+            "url": "https://github.com/synfig/synfig/releases/download/v1.5.5/SynfigStudio-1.5.5-2026.03.15-win64-79bf7.zip",
+            "hash": "f8e62c860216ed733be092147779df2aa5afdeee34ad9da5736f99ed96550fe0"
         },
         "32bit": {
-            "url": "https://www.fosshub.com/Synfig.html/SynfigStudio-1.4.2-2021.07.29-win32-dc54d.zip",
-            "hash": "960b0ecc5704d1e680d6fb0faf125ff3f706886e87b000bd40884099feb6f2f9"
+            "url": "https://github.com/synfig/synfig/releases/download/v1.5.5/SynfigStudio-1.5.5-2026.03.15-win32-79bf7.zip",
+            "hash": "7802b6f103e37990e5f4659e967e75534d321e6bd371b517a35962ef4f2a0bd1"
         }
     },
     "bin": "bin\\synfig.exe",
@@ -23,17 +23,20 @@
         ]
     ],
     "checkver": {
-        "url": "https://www.fosshub.com/Synfig.html",
-        "regex": "SynfigStudio-([\\d.]+)-(?<date>[\\d.]+)-win64-(?<sha>[\\da-f]+)"
+        "url": "https://github.com/synfig/synfig/releases",
+        "regex": "SynfigStudio-([\\d.]+)-(?<date>[\\d.]+)-win64-(?<sha>[\\da-f]+)\\.zip"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://www.fosshub.com/Synfig.html/SynfigStudio-$version-$matchDate-win64-$matchSha.zip"
+                "url": "https://github.com/synfig/synfig/releases/download/v$version/SynfigStudio-$version-$matchDate-win64-$matchSha.zip"
             },
             "32bit": {
-                "url": "https://www.fosshub.com/Synfig.html/SynfigStudio-$version-$matchDate-win32-$matchSha.zip"
+                "url": "https://github.com/synfig/synfig/releases/download/v$version/SynfigStudio-$version-$matchDate-win32-$matchSha.zip"
             }
+        },
+        "hash": {
+            "url": "$baseurl/checksum-sha256.txt"
         }
     }
 }

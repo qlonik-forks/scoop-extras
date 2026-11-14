@@ -1,13 +1,16 @@
 {
-    "version": "7.14-4610",
-    "description": "Comprehensive Hardware Analysis, Monitoring and Reporting for Windows and DOS",
+    "version": "8.60-6120",
+    "description": "Comprehensive Hardware Analysis, Monitoring and Reporting for Windows and DOS.",
     "homepage": "https://www.hwinfo.com",
-    "license": "Freeware",
-    "url": "https://www.fosshub.com/HWiNFO.html/hwi_714.zip",
-    "hash": "9cafd0d3ac179e44828ca468c910c8ddc587255e9926646dc5ccf62005b516e8",
+    "license": {
+        "identifier": "Freeware",
+        "url": "https://www.hwinfo.com/licenses/"
+    },
+    "url": "https://www.sac.sk/download/utildiag/hwi_860.zip",
+    "hash": "0f7726ee30f6b040cc13aa9de5a19619545a00dd7515fc17ebea9f9f2996e83c",
     "architecture": {
         "64bit": {
-            "pre_install": "if (-not (Test-Path \"$persist_dir\\HWiNFO64.INI\")) { Set-Content \"$dir\\HWiNFO64.INI\" '[Settings]', 'AutoUpdate=0' -Encoding Ascii}",
+            "pre_install": "Get-ChildItem -Path $dir -Include '*32*', '*ARM*' -Recurse -File | Remove-Item -Force -ErrorAction SilentlyContinue",
             "bin": [
                 [
                     "HWiNFO64.exe",
@@ -22,7 +25,7 @@
             ]
         },
         "32bit": {
-            "pre_install": "if (-not (Test-Path \"$persist_dir\\HWiNFO32.INI\")) { Set-Content \"$dir\\HWiNFO32.INI\" '[Settings]', 'AutoUpdate=0' -Encoding Ascii}",
+            "pre_install": "Get-ChildItem -Path $dir -Include '*64*' -Recurse -File | Remove-Item -Force -ErrorAction SilentlyContinue",
             "bin": [
                 [
                     "HWiNFO32.exe",
@@ -35,17 +38,48 @@
                     "HWiNFO"
                 ]
             ]
+        },
+        "arm64": {
+            "pre_install": "Get-ChildItem -Path $dir -Exclude '*ARM*' -Recurse -File | Remove-Item -Force -ErrorAction SilentlyContinue",
+            "bin": [
+                [
+                    "HWiNFO_ARM64.exe",
+                    "HWiNFO"
+                ]
+            ],
+            "shortcuts": [
+                [
+                    "HWiNFO_ARM64.exe",
+                    "HWiNFO"
+                ]
+            ]
         }
     },
-    "persist": [
-        "HWiNFO64.INI",
-        "HWiNFO32.INI"
-    ],
+    "installer": {
+        "script": [
+            "ensure $persist_dir | Out-Null",
+            "Get-ChildItem -Path $persist_dir -Include '*64_KEY.txt' -Recurse -File | Copy-Item -Destination $dir -Force",
+            "$setting_name = if ($architecture -match '\\d{2}(?=bit)') { 'HWiNFO{0}.INI' -f $matches[0] } else { 'HWiNFO_ARM64.INI' }",
+            "if (-not (Test-Path -Path \"$persist_dir\\$setting_name\" -PathType Leaf)) {",
+            "    $cfg = @('[Settings]', 'AutoUpdate=0', 'AutoUpdateBetaDisable=1')",
+            "    Set-Content -Path \"$dir\\$setting_name\" -Value $cfg -Encoding ascii",
+            "}",
+            "persist_data @{ persist = $setting_name } $original_dir $persist_dir",
+            "persist_permission @{ persist = $setting_name } $global"
+        ]
+    },
+    "pre_uninstall": "Get-ChildItem -Path $dir -Filter '*64_KEY.txt' -File | Copy-Item -Destination $persist_dir -Force",
+    "uninstaller": {
+        "script": [
+            "$setting_name = if ($architecture -match '\\d{2}(?=bit)') { 'HWiNFO{0}.INI' -f $matches[0] } else { 'HWiNFO_ARM64.INI' }",
+            "unlink_persist_data @{ persist = $setting_name } $dir"
+        ]
+    },
     "checkver": {
         "url": "https://www.hwinfo.com/ver.txt",
-        "regex": "([\\d-.]+)"
+        "regex": "([\\d.-]+)"
     },
     "autoupdate": {
-        "url": "https://www.fosshub.com/HWiNFO.html/hwi_$majorVersion$minorVersion.zip"
+        "url": "https://www.sac.sk/download/utildiag/hwi_$majorVersion$minorVersion.zip"
     }
 }

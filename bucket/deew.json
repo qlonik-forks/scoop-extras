@@ -1,0 +1,32 @@
+{
+    "version": "5.3.0",
+    "description": "Dolby Encoding Engine Wrapper",
+    "homepage": "https://github.com/pcroland/deew",
+    "license": "MIT",
+    "suggest": {
+        "ffmpeg": "ffmpeg"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/pcroland/deew/releases/download/5.3.0/deew.exe",
+            "hash": "42fc2ee9bb6460cf2deb06e52967f6e807c5907f4c46f9ba21f53c2323116828"
+        }
+    },
+    "post_install": [
+        "if (!(Get-Command 'ffmpeg' -ErrorAction SilentlyContinue)) {",
+        "  warn \"'ffmpeg' is required to run deew.\"",
+        "}",
+        "if (!(Get-Command 'dee' -ErrorAction SilentlyContinue)) {",
+        "  warn \"'Dolby Encoding Engine (DEE)' is required to run deew.\"",
+        "}"
+    ],
+    "bin": "deew.exe",
+    "checkver": "github",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/pcroland/deew/releases/download/$version/deew.exe"
+            }
+        }
+    }
+}
